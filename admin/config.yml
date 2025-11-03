@@ -1,0 +1,25 @@
+backend:
+  name: github
+  repo: karpatytk/strahova.biz.ua
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: /auth
+  open_authoring: true
+
+publish_mode: editorial_workflow
+media_folder: "images"
+public_folder: "/images"
+
+site_url: https://strahova.biz.ua
+display_url: https://strahova.biz.ua
+
+collections:
+  - name: "main"
+    label: "Головна сторінка"
+    files:
+      - file: "index.html"
+        label: "Контент сайту"
+        name: "index"
+        fields:
+          - { label: "HTML-код сторінки", name: "body", widget: "text" }
+
