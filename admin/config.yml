@@ -5,22 +5,24 @@ backend:
 site_url: https://strahova.biz.ua
 logo_url: https://strahova.biz.ua/images/logo.png
 
-media_folder: "static/img"
-public_folder: "/img"
+media_folder: "images"
+public_folder: "/images"
 
 collections:
   - name: "pages"
     label: "Сторінки"
-    folder: "content/pages"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Назва", name: "title", widget: "string" }
-      - { label: "Тіло", name: "body", widget: "markdown" }
+    folder: ""
+    files:
+      - label: "Головна сторінка"
+        name: "index"
+        file: "index.html"
+        fields:
+          - { label: "Назва", name: "title", widget: "string" }
+          - { label: "Контент", name: "body", widget: "markdown" }
 
   - name: "posts"
     label: "Новини"
-    folder: "content/posts"
+    folder: "posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
