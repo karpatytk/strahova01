@@ -1,18 +1,19 @@
 cat > admin/index.html <<'EOF'
 <!doctype html>
-<html>
+<html lang="uk">
   <head>
     <meta charset="utf-8" />
     <title>Адмін панель</title>
   </head>
   <body>
-    <!-- ✅ Netlify Identity Widget -->
+    <!-- ✅ Netlify Identity Widget (обробляє invite/recovery токени) -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <!-- ✅ Ініціалізація Identity -->
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
+          // Якщо користувач не увійшов — слухаємо подію логіну
           if (!user) {
             window.netlifyIdentity.on("login", () => {
               document.location.href = "/admin/";
