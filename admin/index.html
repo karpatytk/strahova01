@@ -5,6 +5,24 @@
     <title>Адмін панель</title>
   </head>
   <body>
+    <!-- Підключення Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Ініціалізація Identity -->
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          // Якщо користувач не залогінений
+          if (!user) {
+            // При логіні перекидає в адмінку
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+
     <!-- Підключення Netlify CMS -->
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   </body>
