@@ -2,19 +2,19 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/uploads"
-public_folder: "/uploads"
-
 site_url: https://strahova.biz.ua
-display_url: https://strahova.biz.ua
+logo_url: https://strahova.biz.ua/images/logo.png
+
+media_folder: "images"
+public_folder: "/images"
 
 collections:
-  - name: "pages"
-    label: "Сторінки"
-    folder: "content/pages"
+  - name: "posts"
+    label: "Новини"
+    folder: "posts"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Назва сторінки", name: "title", widget: "string" }
-      - { label: "Основний текст", name: "body", widget: "markdown" }
-
+      - { label: "Назва", name: "title", widget: "string" }
+      - { label: "Дата", name: "date", widget: "datetime" }
+      - { label: "Контент", name: "body", widget: "markdown" }
