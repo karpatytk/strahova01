@@ -11,15 +11,12 @@ public_folder: "/images"
 collections:
   - name: "pages"
     label: "Сторінки"
-    folder: ""
-    files:
-      - label: "Головна сторінка"
-        name: "index"
-        file: "index.html"
-        fields:
-          - { label: "Назва", name: "title", widget: "string" }
-          - { label: "Контент", name: "body", widget: "markdown" }
-
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Назва", name: "title", widget: "string" }
+      - { label: "Контент", name: "body", widget: "markdown" }
   - name: "posts"
     label: "Новини"
     folder: "posts"
