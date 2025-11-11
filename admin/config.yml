@@ -1,19 +1,30 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Страхова Адмінка</title>
-  <script src="https://unpkg.com/decap-cms@^3.9.0/dist/decap-cms.js"></script>
-</head>
-<body>
-  <!-- Контейнер для Decap CMS -->
-  <div id="nc-root"></div>
+backend:
+  name: github
+  repo: karpatytk/strahova01
+  branch: main
 
-  <script>
-    DecapCMS.init({
-      config: '/admin/config.yml'
-    });
-  </script>
-</body>
-</html>
+site_url: https://strahova.biz.ua
+logo_url: https://strahova.biz.ua/images/logo.png
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Сторінки"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Назва", name: "title", widget: "string" }
+      - { label: "Контент", name: "body", widget: "markdown" }
+
+  - name: "posts"
+    label: "Новини"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Назва", name: "title", widget: "string" }
+      - { label: "Дата", name: "date", widget: "datetime" }
+      - { label: "Контент", name: "body", widget: "markdown" }

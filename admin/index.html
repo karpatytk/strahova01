@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
   <meta charset="utf-8">
-  <title>Адмінка</title>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Страхова Адмінка</title>
+  <script src="https://unpkg.com/decap-cms@^3.9.0/dist/decap-cms.js"></script>
 </head>
 <body>
+  <!-- Контейнер для Decap CMS -->
+  <div id="nc-root"></div>
+
+  <script>
+    DecapCMS.init({
+      config: '/admin/config.yml'
+    });
+  </script>
 </body>
 </html>
