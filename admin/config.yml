@@ -1,10 +1,10 @@
 backend:
   name: github
-  repo: karpatytk/strahova01   # твій репозиторій
-  branch: main                  # гілка
-  auth_endpoint: /api/auth      # ендпоінт для авторизації (Vercel function)
-  base_url: https://decap-cms-oauth.vercel.app   # URL для авторизації
-  site_domain: strahova.biz.ua  # твій домен
+  repo: karpatytk/strahova01
+  branch: main
+  base_url: https://decap-cms-oauth.vercel.app
+  auth_endpoint: /api/auth
+  site_domain: strahova.biz.ua
 
 site_url: https://strahova.biz.ua
 logo_url: /images/logo.png

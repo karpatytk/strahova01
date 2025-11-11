@@ -4,20 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Адмінка Strahova</title>
+
+    <!-- Основний скрипт Decap CMS -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js" defer></script>
   </head>
   <body>
-    <!-- Контейнер, у який CMS вставить свій інтерфейс -->
+    <!-- Контейнер для CMS -->
     <div id="nc-root"></div>
 
-    <!-- Підключення Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
     <!-- Ініціалізація CMS -->
-    <script>
+    <script defer>
       window.CMS_MANUAL_INIT = true;
-      document.addEventListener("DOMContentLoaded", function () {
+
+      window.addEventListener("load", function () {
         if (typeof window.DecapCMS !== "undefined") {
-          window.DecapCMS.init();
+          window.DecapCMS.init({ root: document.getElementById("nc-root") });
+          console.log("✅ DecapCMS ініціалізовано!");
         } else {
           console.error("❌ DecapCMS не завантажився!");
         }
