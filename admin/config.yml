@@ -2,7 +2,7 @@ backend:
   name: github
   repo: karpatytk/strahova01
   branch: main
-  base_url: https://strahova.biz.ua
+  base_url: https://decap-cms-oauth.vercel.app
   auth_endpoint: /api/auth
   site_domain: strahova.biz.ua
 
