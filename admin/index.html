@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Страхова Адмінка</title>
-  <script src="https://unpkg.com/decap-cms@^3.9.0/dist/decap-cms.js"></script>
-</head>
-<body>
-  <!-- Контейнер для Decap CMS -->
-  <div id="nc-root"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Адмінка Strahova</title>
+  </head>
+  <body>
+    <!-- Контейнер, у який CMS вставить свій інтерфейс -->
+    <div id="nc-root"></div>
 
-  <script>
-    DecapCMS.init({
-      config: '/admin/config.yml'
-    });
-  </script>
-</body>
+    <!-- Підключення Decap CMS -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+    <!-- Ініціалізація CMS -->
+    <script>
+      window.CMS_MANUAL_INIT = true;
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof window.DecapCMS !== "undefined") {
+          window.DecapCMS.init();
+        } else {
+          console.error("❌ DecapCMS не завантажився!");
+        }
+      });
+    </script>
+  </body>
 </html>
