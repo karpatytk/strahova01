@@ -1,5 +1,5 @@
 backend:
-  name: git-gateway
+  name: github
   repo: karpatytk/strahova01
   branch: main
   base_url: https://decap-cms-oauth.vercel.app
