@@ -1,12 +1,16 @@
 backend:
   name: github
-  repo: karpatytk/strahova.biz.ua
+  repo: karpatytk/strahova01 # твій репозиторій
   branch: main
-
-media_folder: "images"
-public_folder: "/images"
+  base_url: https://decap-cms-oauth.vercel.app
+  auth_endpoint: /api/auth
+  site_domain: strahova.biz.ua
 
 site_url: https://strahova.biz.ua
+logo_url: https://strahova.biz.ua/images/logo.png
+
+media_folder: "images" # де зберігаються зображення
+public_folder: "/images"
 
 collections:
   - name: "pages"
@@ -16,4 +20,14 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Назва", name: "title", widget: "string" }
-      - { label: "Тіло сторінки", name: "body", widget: "markdown" }
+      - { label: "Контент", name: "body", widget: "markdown" }
+
+  - name: "posts"
+    label: "Новини"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Назва", name: "title", widget: "string" }
+      - { label: "Дата", name: "date", widget: "datetime" }
+      - { label: "Контент", name: "body", widget: "markdown" }
