@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="uk">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Адмінка Strahova</title>
   </head>
   <body>
+    <!-- Контейнер для CMS -->
     <div id="nc-root"></div>
 
-    <!-- Основний скрипт CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <!-- Підключення Decap CMS з надійного CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.9.0/dist/decap-cms.js"></script>
 
+    <!-- Запуск CMS -->
     <script>
-      if (window.DecapCMS) {
-        window.DecapCMS.init();
-      } else {
-        document.body.innerHTML = "<h3 style='color:red;text-align:center;margin-top:50px'>❌ Помилка завантаження Decap CMS</h3>";
-      }
+      document.addEventListener("DOMContentLoaded", function () {
+        if (window.DecapCMS) {
+          window.DecapCMS.init();
+          console.log("✅ Decap CMS завантажено успішно!");
+        } else {
+          console.error("❌ Decap CMS не завантажився. Перевір підключення CDN.");
+        }
+      });
     </script>
   </body>
 </html>
