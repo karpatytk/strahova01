@@ -1,29 +1,33 @@
-// api/auth.js
-export default async function handler(req, res) {
-  const { query } = req;
+import express from "express";
+import fetch from "node-fetch";
+import dotenv from "dotenv";
 
-  if (query.code) {
-    // коли GitHub повертає код — обробляємо його
-    const params = new URLSearchParams();
-    params.append("client_id", process.env.GITHUB_CLIENT_ID);
-    params.append("client_secret", process.env.GITHUB_CLIENT_SECRET);
-    params.append("code", query.code);
+dotenv.config();
+const app = express();
 
-    const response = await fetch("https://github.com/login/oauth/access_token", {
-      method: "POST",
-      headers: { Accept: "application/json" },
-      body: params,
-    });
+app.use(express.json());
 
-    const data = await response.json();
+app.get("/api/auth", (req, res) => {
+  const client_id = process.env.GITHUB_CLIENT_ID;
+  const redirect_uri = "https://strahova.biz.ua/admin/";
+  const authUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=repo,user`;
+  res.redirect(authUrl);
+});
+app.post("/api/auth", async (req, res) => {
+  const { code } = req.body;
+  const response = await fetch("https://github.com/login/oauth/access_token", {
+    method: "POST",
+    headers: { Accept: "application/json" },
+    body: new URLSearchParams({
+      client_id: process.env.GITHUB_CLIENT_ID,
+      client_secret: process.env.GITHUB_CLIENT_SECRET,
+      code,
+    }),
+  });
 
-    if (data.error) {
-      return res.status(400).json({ error: data.error_description });
-    }
+  const data = await response.json();
+  res.json(data);
+});
 
-    // повертаємо токен CMS-у
-    res.status(200).json(data);
-  } else {
-    res.status(400).json({ error: "Missing ?code parameter" });
-  }
-}
+export default app;
+
