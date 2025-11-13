@@ -15,19 +15,6 @@
 <div class="hotline">Гаряча лінія: +38 050 050 0370</div>
 
 <header>
-<!-- Кнопка для відкриття меню -->
-<button id="menu-toggle">Для вас</button>
-
-<!-- Бічне меню -->
-<nav id="side-menu" class="hidden">
-  <ul>
-    <li><a href="/pages/autocivilka.md">Автоцивілка</a></li>
-    <li><a href="/pages/green-card.md">Зелена карта</a></li>
-    <li><a href="/pages/travel.md">Туристичне страхування</a></li>
-    <li><a href="/posts/">Новини страхування</a></li>
-    <li><a href="/pages/about.md">Про нас</a></li>
-  </ul>
-</nav>
   <div class="container header-inner">
     <h1>Страхування 360</h1>
     <div class="contact">
@@ -35,8 +22,64 @@
       <a href="https://wa.me/380500500370" target="_blank">WhatsApp</a>
       <a href="https://t.me/share/url?url=https://strahova.biz.ua&text=Потрібна%20консультація%20щодо%20страхування" target="_blank">Telegram</a>
     </div>
+    
+    <!-- Кнопка для відкриття меню -->
+    <button id="menu-toggle">Для вас</button>
+
+    <!-- Бічне меню -->
+    <nav id="side-menu" class="hidden">
+      <ul>
+        <li><a href="/pages/autocivilka.md">Автоцивілка</a></li>
+        <li><a href="/pages/green-card.md">Зелена карта</a></li>
+        <li><a href="/pages/travel.md">Туристичне страхування</a></li>
+        <li><a href="/posts/news.md">Новини страхування</a></li>
+        <li><a href="/pages/about.md">Про нас</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
+
+<script>
+  // JS для відкриття/закриття меню
+  const menuToggle = document.getElementById('menu-toggle');
+  const sideMenu = document.getElementById('side-menu');
+
+  menuToggle.addEventListener('click', () => {
+    sideMenu.classList.toggle('hidden');
+  });
+</script>
+
+<style>
+  /* Мінімальний CSS для меню */
+  #side-menu {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: none;
+    z-index: 1000;
+  }
+  #side-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  #side-menu li {
+    margin: 5px 0;
+  }
+  #side-menu li a {
+    text-decoration: none;
+    color: #333;
+  }
+  #side-menu.hidden {
+    display: none;
+  }
+  #side-menu:not(.hidden) {
+    display: block;
+  }
+</style>
 
 <div class="container">
   <p class="intro">Автострахування (ОСЦПВ, КАСКО, <strong>Зелена карта</strong>), туристичне, медичне, страхування майна, страхування від нещасних випадків, страхування іноземців в Україні.</p>
