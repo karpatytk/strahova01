@@ -1,13 +1,16 @@
 backend:
   name: github
-  repo: karpatytk/strahova01
+  repo: karpatytk/strahova01   # Твій репозиторій
   branch: main
+  base_url: https://decap-cms-oauth.vercel.app  # OAuth endpoint (Vercel)
+  auth_endpoint: /api/auth
+  site_domain: strahova.biz.ua
 
 site_url: https://strahova.biz.ua
-logo_url: https://strahova.biz.ua/images/logo.png
+logo_url: /images/logo.png   # Шлях до логотипу у репозиторії
 
-media_folder: "images"
-public_folder: "/images"
+media_folder: "images"       # Папка для завантажених медіа
+public_folder: "/images"     # Публічний шлях
 
 collections:
   - name: "pages"
