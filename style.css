@@ -6,6 +6,53 @@
   --bg: #fff;
   --container-w: 1200px;
 }
+/* Приховане меню */
+#side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background: #2c3e50;
+  color: #fff;
+  padding: 20px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* Показати меню */
+#side-menu.show {
+  transform: translateX(0);
+}
+
+#side-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+#side-menu li {
+  margin: 15px 0;
+}
+
+#side-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Кнопка */
+#menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+  padding: 10px 15px;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
 
 *{box-sizing:border-box}
 body{font-family:Arial,sans-serif;margin:0;padding:0;color:#1b2b3a;background:var(--bg);line-height:1.5}
