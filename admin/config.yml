@@ -3,13 +3,12 @@ backend:
   repo: karpatytk/strahova.biz.ua
   branch: main
   base_url: https://strahova.biz.ua
-  auth_endpoint: api/auth
-  site_domain: strahova.biz.ua
+  auth_endpoint: /api/auth
 
 site_url: https://strahova.biz.ua
 logo_url: https://strahova.biz.ua/images/logo.png
 
-media_folder: "images" # де зберігаються зображення
+media_folder: "images"
 public_folder: "/images"
 
 collections:
@@ -26,7 +25,7 @@ collections:
     label: "Новини"
     folder: "content/posts"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
     fields:
       - { label: "Назва", name: "title", widget: "string" }
       - { label: "Дата", name: "date", widget: "datetime" }

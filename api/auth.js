@@ -1,33 +1,36 @@
-import express from "express";
-import fetch from "node-fetch";
-import dotenv from "dotenv";
+import { Octokit } from "@octokit/core";
 
-dotenv.config();
-const app = express();
+export default async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-app.use(express.json());
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
 
-app.get("/api/auth", (req, res) => {
-  const client_id = process.env.GITHUB_CLIENT_ID;
-  const redirect_uri = "https://strahova.biz.ua/admin/";
-  const authUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=repo,user`;
-  res.redirect(authUrl);
-});
-app.post("/api/auth", async (req, res) => {
-  const { code } = req.body;
-  const response = await fetch("https://github.com/login/oauth/access_token", {
-    method: "POST",
-    headers: { Accept: "application/json" },
-    body: new URLSearchParams({
-      client_id: process.env.GITHUB_CLIENT_ID,
-      client_secret: process.env.GITHUB_CLIENT_SECRET,
-      code,
-    }),
-  });
+  try {
+    const { code } = req.query;
+    if (!code) return res.status(400).json({ error: "Missing code" });
 
-  const data = await response.json();
-  res.json(data);
-});
+    const response = await fetch("https://github.com/login/oauth/access_token", {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: new URLSearchParams({
+        client_id: process.env.GITHUB_CLIENT_ID,
+        client_secret: process.env.GITHUB_CLIENT_SECRET,
+        code,
+      }),
+    });
 
-export default app;
+    const data = await response.json();
+    if (data.error) throw data;
+
+    res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Authentication failed", details: error });
+  }
+}
+
 
