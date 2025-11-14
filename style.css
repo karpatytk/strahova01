@@ -1,153 +1,153 @@
-/* style.css — збережено стиль у дусі оригіналу, додано вирівнювання іконок */
-:root{
-  --accent: #0b2b4a;
-  --hotline: #f2994a;
-  --muted: #6b7a8a;
-  --bg: #fff;
-  --container-w: 1200px;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  color: #222;
 }
-/* Приховане меню */
-#side-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 250px;
-  height: 100%;
-  background: #2c3e50;
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.hotline {
+  background: #d90000;
   color: #fff;
-  padding: 20px;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-  z-index: 1000;
-}
-*{box-sizing:border-box}
-body{font-family:Arial,sans-serif;margin:0;padding:0;color:#1b2b3a;background:var(--bg);line-height:1.5}
-.header-inner{display:flex;justify-content:space-between;align-items:center;padding:20px}
-header{background:var(--accent);color:#fff}
-header h1{margin:0;font-size:24px;padding-left:20px}
-.contact{padding-right:20px}
-.contact a{color:var(--hotline);text-decoration:none;margin-left:15px;font-weight:bold}
-.hotline{background:var(--hotline);color:#fff;padding:10px;text-align:center;font-weight:bold}
-.container{padding:20px;max-width:var(--container-w);margin:0 auto}
-.intro{margin-bottom:12px}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
-.btn{display:inline-block;padding:10px 15px;color:#fff;border-radius:8px;text-decoration:none;font-weight:600}
-.btn-viber{background:#59267c}
-.btn-phone{background:#27ae60}
-.btn-mail{background:#3498db}
-.btn-office{background:#16a085}
-
-/* SERVICES: grid -> flex per item to allow icon alignment */
-.services{display:grid;grid-template-columns:1fr;gap:14px}
-@media(min-width:760px){
-  .services{grid-template-columns:1fr}
+  padding: 8px;
+  text-align: center;
+  font-weight: 600;
 }
 
-/* each service is a flex row: text + icon */
-.service{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  padding:15px;
-  border-radius:8px;
-  background:#f9f9f9;
-  border:1px solid #eee;
-}
-.service + .service{margin-top:10px}
-.service-text{flex:1;padding-right:10px}
-.service-text h3{margin:0 0 8px;color:var(--accent)}
-.service-text p{margin:0;color:var(--muted)}
-.service-icon{flex:0 0 120px;display:flex;align-items:center;justify-content:center}
-.service-icon img{width:96px;height:auto;display:block;opacity:0.95}
-
-/* special handling for foreigners block to remove empty space and balance */
-.service-foreigners{background:#f9f9f9}
-.service-foreigners .service-text{min-width:0}
-
-/* info and online block */
-.online-info{margin-top:20px;padding:20px;background:#eef2f5;border-radius:12px;text-align:center}
-.info-section{margin-top:30px;padding:20px;background:#f4f6f8;border-radius:8px}
-.info-section h2{color:var(--accent)}
-.info-section article{margin-bottom:14px}
-.info-section article h3{margin-bottom:8px}
-footer{margin-top:30px;padding:20px;border-top:1px solid #eee;color:var(--muted);font-size:14px;background:#fff}
-
-/* responsive: stack service columns */
-@media(max-width:760px){
-  .service{flex-direction:column;align-items:flex-start}
-  .service-icon{width:100%;padding-top:10px}
-  header h1, .contact{padding-left:12px;padding-right:12px}
-  .container{padding:12px}
-}
-/* Верхня панель */
-.header-bar {
-  background: #25314A;
-  padding: 12px 0;
-  color: white;
+.header {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
 }
 
-.header-content {
+.header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 15px 0;
 }
 
-/* Назва */
-.site-title {
+.logo {
   font-size: 22px;
   font-weight: 700;
-  margin: 0;
-  color: #fff;
 }
 
-/* Контакти */
-.contact a {
-  margin-left: 12px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-/* Тригер меню */
-.menu-trigger {
-  cursor: pointer;
-  font-weight: 600;
-  padding: 6px 10px;
-  color: #fff;
-}
-
-/* Випадаюче меню */
-.dropdown {
-  position: absolute;
-  background: white;
-  color: #333;
-  top: 55px;
-  right: 20px;
-  list-style: none;
-  padding: 10px 0;
-  margin: 0;
-  width: 220px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  border-radius: 6px;
-}
-
-.dropdown.hidden {
+.nav-btn {
   display: none;
+  background: #007bff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
 }
 
-.dropdown li {
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.social a {
+  margin-left: 12px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.intro {
+  padding: 20px 0;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px 18px;
+  background: #007bff;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.viber { background: #7a3cff; }
+.phone { background: #028a0f; }
+.mail { background: #333; }
+.office { background: #ff8a00; }
+
+.services {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+.service {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  gap: 15px;
+  border: 1px solid #eee;
+}
+
+.service img {
+  width: 60px;
+  height: 60px;
+}
+
+.service h3 {
   margin: 0;
 }
 
-.dropdown a {
-  display: block;
-  padding: 10px 15px;
-  color: #333;
-  text-decoration: none;
+footer {
+  background: #222;
+  color: #ccc;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 30px;
+  font-size: 14px;
 }
 
-.dropdown a:hover {
-  background: #f2f2f7;
-}
+/* ---------- MOBILE ---------- */
 
+@media (max-width: 768px) {
+
+  .nav-btn {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .service {
+    flex-direction: column;
+    text-align: center;
+  }
+}
