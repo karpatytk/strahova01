@@ -14,30 +14,34 @@
 
 <div class="hotline">Гаряча лінія: +38 050 050 0370</div>
 
-<header style="background: #fff; padding: 10px 0; border-bottom: 1px solid #ccc;">
-  <div class="container header-inner" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-    <h1 style="margin: 0;">Страхування 360</h1>
-
-    <!-- Кнопка для відкриття меню -->
-    <button id="menu-toggle" style="padding: 8px 12px; cursor: pointer; background: #007bff; color: #fff; border: none; border-radius: 4px; margin-top: 5px;">
-      Для вас
-    </button>
+<header class="main-header">
+  <div class="container header-top">
+    <div class="hotline-text">Гаряча лінія: +38 050 050 0370</div>
   </div>
 
-  <!-- Бічне меню -->
-  <nav id="side-menu" class="hidden" style="background: #fff; border-top: 1px solid #ccc; padding: 10px 20px; display: none;">
-    <ul style="list-style: none; margin: 0; padding: 0;">
-      <li style="margin: 5px 0;"><a href="/pages/autocivilka.md">Автоцивілка</a></li>
-      <li style="margin: 5px 0;"><a href="/pages/green-card.md">Зелена карта</a></li>        <li><a href="/pages/travel.md">Туристичне страхування</a></li>
-        <li><a href="/posts/news.md">Новини страхування</a></li>
-        <li><a href="/pages/about.md">Про нас</a></li>
-      </ul>
-    </nav>
+  <div class="container header-main">
+    <h1 class="site-title">Страхування 360</h1>
+
+    <div class="contact">
+      <a href="viber://chat?number=%2B380500500370">💬 Viber</a>
+      <a href="https://wa.me/380500500370" target="_blank">WhatsApp</a>
+      <a href="https://t.me/share/url?url=https://strahova.biz.ua&text=Потрібна%20консультація%20щодо%20страхування" target="_blank">Telegram</a>
+    </div>
+
+    <button id="menu-toggle" class="menu-btn">Для вас</button>
   </div>
+
+  <nav id="side-menu" class="side-menu hidden">
+    <ul>
+      <li><a href="/pages/autocivilka.md">Автоцивілка</a></li>
+      <li><a href="/pages/green-card.md">Зелена карта</a></li>
+      <li><a href="/pages/travel.md">Туристичне страхування</a></li>
+      <li><a href="/posts/news.md">Новини страхування</a></li>
+      <li><a href="/pages/about.md">Про нас</a></li>
+    </ul>
+  </nav>
 </header>
-
 <script>
-  // JS для відкриття/закриття меню
   const menuToggle = document.getElementById('menu-toggle');
   const sideMenu = document.getElementById('side-menu');
 
@@ -47,36 +51,61 @@
 </script>
 
 <style>
-  /* Мінімальний CSS для меню */
-  #side-menu {
-    position: absolute;
-    top: 50px;
-    left: 0;
+  .main-header {
     background: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    display: none;
-    z-index: 1000;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
   }
-  #side-menu ul {
+
+  .header-top {
+    background: #f5f5f5;
+    padding: 5px 0;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .header-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+  }
+
+  .menu-btn {
+    padding: 8px 12px;
+    cursor: pointer;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+
+  .side-menu {
+    background: #fff;
+    border-top: 1px solid #ccc;
+    padding: 10px 20px;
+  }
+
+  .side-menu.hidden {
+    display: none;
+  }
+
+  .side-menu ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  #side-menu li {
-    margin: 5px 0;
+
+  .side-menu li {
+    margin: 8px 0;
   }
-  #side-menu li a {
+
+  .side-menu a {
     text-decoration: none;
     color: #333;
   }
-  #side-menu.hidden {
-    display: none;
-  }
-  #side-menu:not(.hidden) {
-    display: block;
-  }
 </style>
+
 
 <div class="container">
   <p class="intro">Автострахування (ОСЦПВ, КАСКО, <strong>Зелена карта</strong>), туристичне, медичне, страхування майна, страхування від нещасних випадків, страхування іноземців в Україні.</p>
