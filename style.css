@@ -20,40 +20,6 @@
   transition: transform 0.3s ease;
   z-index: 1000;
 }
-
-/* Показати меню */
-#side-menu.show {
-  transform: translateX(0);
-}
-
-#side-menu ul {
-  list-style: none;
-  padding: 0;
-}
-
-#side-menu li {
-  margin: 15px 0;
-}
-
-#side-menu a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* Кнопка */
-#menu-toggle {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1100;
-  padding: 10px 15px;
-  background: #3498db;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
 *{box-sizing:border-box}
 body{font-family:Arial,sans-serif;margin:0;padding:0;color:#1b2b3a;background:var(--bg);line-height:1.5}
 .header-inner{display:flex;justify-content:space-between;align-items:center;padding:20px}
@@ -114,3 +80,74 @@ footer{margin-top:30px;padding:20px;border-top:1px solid #eee;color:var(--muted)
   header h1, .contact{padding-left:12px;padding-right:12px}
   .container{padding:12px}
 }
+/* Верхня панель */
+.header-bar {
+  background: #25314A;
+  padding: 12px 0;
+  color: white;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Назва */
+.site-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+}
+
+/* Контакти */
+.contact a {
+  margin-left: 12px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Тригер меню */
+.menu-trigger {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 6px 10px;
+  color: #fff;
+}
+
+/* Випадаюче меню */
+.dropdown {
+  position: absolute;
+  background: white;
+  color: #333;
+  top: 55px;
+  right: 20px;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  width: 220px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-radius: 6px;
+}
+
+.dropdown.hidden {
+  display: none;
+}
+
+.dropdown li {
+  margin: 0;
+}
+
+.dropdown a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown a:hover {
+  background: #f2f2f7;
+}
+
