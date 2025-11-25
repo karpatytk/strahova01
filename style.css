@@ -1,3 +1,4 @@
+/* ---------- ЗАГАЛЬНІ СТИЛІ ---------- */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -19,23 +20,30 @@ body {
   font-weight: 600;
 }
 
+/* ---------- HEADER ---------- */
 .header {
-  background: #fff;
+  background-color: #fff;
   border-bottom: 1px solid #ddd;
+  padding: 10px 20px;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 0;
+  flex-wrap: wrap;
 }
 
+/* Логотип */
 .logo {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: bold;
 }
 
+/* ---------- МЕНЮ ---------- */
 .nav-btn {
   display: none;
   background: #007bff;
@@ -44,26 +52,52 @@ body {
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .nav-menu {
-  display: flex;
   list-style: none;
-  gap: 20px;
+  display: flex;
+  gap: 30px; /* Рівні відстані між пунктами меню */
+  margin: 0;
+  padding: 0;
 }
 
 .nav-menu li a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
+  padding: 5px 0;
+  transition: color 0.2s, border-bottom 0.2s;
 }
 
-.social a {
-  margin-left: 12px;
+.nav-menu li a:hover {
+  color: #007BFF;
+  border-bottom: 2px solid #007BFF;
+}
+
+/* ---------- СОЦІАЛЬНІ КНОПКИ ---------- */
+.social {
+  display: flex;
+  gap: 12px; /* Відстань між кнопками */
+}
+
+.messenger {
+  padding: 6px 12px;
+  border-radius: 5px;
+  color: #fff;
   text-decoration: none;
-  color: #007bff;
+  font-weight: 500;
+  transition: opacity 0.2s;
 }
 
+.messenger:hover { opacity: 0.85; }
+
+.viber { background-color: #59267C; }    /* фіолетовий */
+.whatsapp { background-color: #25D366; } /* зелений */
+.telegram { background-color: #0088CC; }  /* синій */
+
+/* ---------- ІНШІ СЕКЦІЇ ---------- */
 .intro {
   padding: 20px 0;
   font-size: 18px;
@@ -86,11 +120,6 @@ body {
   display: inline-block;
   font-weight: 600;
 }
-
-.viber { background: #7a3cff; }
-.phone { background: #028a0f; }
-.mail { background: #333; }
-.office { background: #ff8a00; }
 
 .services {
   display: grid;
@@ -126,8 +155,7 @@ footer {
   font-size: 14px;
 }
 
-/* ---------- MOBILE ---------- */
-
+/* ---------- АДАПТИВ ---------- */
 @media (max-width: 768px) {
 
   .nav-btn {
@@ -135,15 +163,32 @@ footer {
   }
 
   .nav-menu {
-    display: none;
     flex-direction: column;
-    background: #fff;
-    padding: 15px;
-    border-top: 1px solid #ddd;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #fff;
+    width: 220px;
+    padding: 10px 0;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
   }
 
-  .nav-menu.open {
-    display: flex;
+  .nav-menu.show {
+    transform: translateX(0);
+  }
+
+  .nav-menu li a {
+    padding: 8px 20px;
+    display: block;
+  }
+
+  .social {
+    margin-top: 10px;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .service {
@@ -151,3 +196,4 @@ footer {
     text-align: center;
   }
 }
+
