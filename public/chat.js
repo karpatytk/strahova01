@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
             sender === "user"
                 ? "bg-blue-500 text-white p-2 rounded-lg mb-2 self-end max-w-[80%]"
                 : "bg-gray-200 p-2 rounded-lg mb-2 self-start max-w-[80%]";
-
         bubble.innerText = text;
         chatMessages.appendChild(bubble);
         chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -68,14 +67,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         appendMessage("bot", "Дякую! Я передам повідомлення оператору. Зараз опрацюю…");
 
-        // Надсилання в Telegram
-        fetch("https://api.telegram.org/bot<8324518762:AAG-4dhvR8hxJI9UBVgFetpAKN4Em1ooW2o>/sendMessage", {
+        // Відправка на сервер Vercel API
+        fetch("/api/sendTelegram", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                chat_id: "<486990958>",
-                text: "Нове повідомлення від клієнта: " + text
-            })
-        });
+            body: JSON.stringify({ message: text })
+        })
+        .then(res => res.json())
+        .then(data => console.log("Telegram API response:", data))
+        .catch(err => console.error("Telegram API error:", err));
     }
 });

@@ -79,15 +79,7 @@ title: "Головна"
 
 <script>
 let step = 0;
-let userData = {
-  name: "",
-  type: "",
-  phone: ""
-};
-
-// ⚠️ ВСТАВ СВОЇ ДАНІ
-const BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN";
-const CHAT_ID = "YOUR_CHAT_ID";
+let userData = { name: "", type: "", phone: "" };
 
 document.getElementById("sendBtn").onclick = sendMessage;
 
@@ -133,11 +125,13 @@ function sendToTelegram() {
 📞 Телефон: ${userData.phone}
   `;
 
-  fetch(`https://api.telegram.org/bot${8324518762:AAG-4dhvR8hxJI9UBVgFetpAKN4Em1ooW2o}/sendMessage`, {
+  fetch("/api/sendTelegram", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      chat_id: "486990958",
-      text: msg
-    })
+    body: JSON.stringify({ message: msg })
   })
+  .then(res => res.json())
+  .then(data => console.log("Telegram response:", data))
+  .catch(err => console.error("Telegram error:", err));
+}
+</script>
