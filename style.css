@@ -12,14 +12,6 @@ body {
   margin: auto;
 }
 
-.hotline {
-  background: #d90000;
-  color: #fff;
-  padding: 8px;
-  text-align: center;
-  font-weight: 600;
-}
-
 /* ---------- HEADER ---------- */
 .header {
   background-color: #fff;
@@ -97,64 +89,6 @@ body {
 .whatsapp { background-color: #25D366; } /* зелений */
 .telegram { background-color: #0088CC; }  /* синій */
 
-/* ---------- ІНШІ СЕКЦІЇ ---------- */
-.intro {
-  padding: 20px 0;
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.btn {
-  padding: 12px 18px;
-  background: #007bff;
-  color: #fff;
-  border-radius: 6px;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: 600;
-}
-
-.services {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  padding-bottom: 40px;
-}
-
-.service {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  gap: 15px;
-  border: 1px solid #eee;
-}
-
-.service img {
-  width: 60px;
-  height: 60px;
-}
-
-.service h3 {
-  margin: 0;
-}
-
-footer {
-  background: #222;
-  color: #ccc;
-  text-align: center;
-  padding: 20px 0;
-  margin-top: 30px;
-  font-size: 14px;
-}
-
 /* ---------- АДАПТИВ ---------- */
 @media (max-width: 768px) {
 
@@ -164,24 +98,26 @@ footer {
 
   .nav-menu {
     flex-direction: column;
-    position: absolute;
+    position: fixed;           /* фіксуємо вікно меню */
     top: 60px;
-    right: 0;
+    left: 0;
+    width: 100%;               /* повна ширина екрану */
+    max-width: 300px;          /* можна обмежити */
     background-color: #fff;
-    width: 220px;
     padding: 10px 0;
     gap: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transform: translateX(100%);
+    transform: translateX(100%); /* ховаємо праворуч */
     transition: transform 0.3s ease-in-out;
+    z-index: 999;
   }
 
   .nav-menu.show {
-    transform: translateX(0);
+    transform: translateX(0);  /* при відкритті меню */
   }
 
   .nav-menu li a {
-    padding: 8px 20px;
+    padding: 12px 20px;
     display: block;
   }
 
@@ -189,11 +125,9 @@ footer {
     margin-top: 10px;
     flex-direction: column;
     gap: 10px;
-  }
-
-  .service {
-    flex-direction: column;
-    text-align: center;
+    padding: 0 20px;
   }
 }
+
+
 
