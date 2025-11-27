@@ -1,53 +1,52 @@
-// api/sendTelegram.js
+document.addEventListener("DOMContentLoaded", function () {
+    const chatWidget = document.getElementById("chat-widget");
+    const chatOpenBtn = document.getElementById("chat-open-btn");
+    const chatCloseBtn = document.getElementById("chat-close-btn");
+    const chatMessages = document.getElementById("chat-messages");
+    const chatInput = document.getElementById("chat-input");
+    const chatSendBtn = document.getElementById("chat-send-btn");
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Метод не дозволено" });
-  }
+    chatOpenBtn.addEventListener("click", () => {
+        chatWidget.classList.remove("hidden");
+        chatOpenBtn.classList.add("hidden");
+    });
 
-  const { name, type, phone } = req.body;
+    chatCloseBtn.addEventListener("click", () => {
+        chatWidget.classList.add("hidden");
+        chatOpenBtn.classList.remove("hidden");
+    });
 
-  if (!name || !type || !phone) {
-    return res.status(400).json({ error: "Не всі дані заповнені" });
-  }
+    chatSendBtn.addEventListener("click", sendMessage);
+    chatInput.addEventListener("keypress", function(e){
+        if(e.key === "Enter") sendMessage();
+    });
 
-  const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-  const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+    function sendMessage(){
+        const text = chatInput.value.trim();
+        if(!text) return;
+        appendMessage("user", text);
+        chatInput.value = "";
 
-  if (!BOT_TOKEN || !CHAT_ID) {
-    return res.status(500).json({ error: "Помилка конфігурації Telegram" });
-  }
-
-  const msg = `
-🔥 НОВА ЗАЯВКА З САЙТУ
-👤 Ім'я: ${name}
-📌 Тип страховки: ${type}
-📞 Телефон: ${phone}
-  `;
-
-  try {
-    const tgResponse = await fetch(
-      `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: CHAT_ID, text: msg }),
-      }
-    );
-
-    const data = await tgResponse.json();
-    if (!data.ok) {
-      throw new Error(JSON.stringify(data));
+        setTimeout(() => handleBotLogic(text), 500);
     }
 
-    return res.status(200).json({ success: true });
-  } catch (err) {
-    console.error("TELEGRAM ERROR:", err);
-    return res.status(500).json({
-      success: false,
-      error: "Помилка при відправці в Telegram",
-      details: err.message,
-    });
-  }
-}
+    function appendMessage(sender, text){
+        const bubble = document.createElement("div");
+        bubble.className = sender === "user" ? "user-msg" : "bot-msg";
+        bubble.innerText = text;
+        chatMessages.appendChild(bubble);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
 
+    function handleBotLogic(text){
+        appendMessage("bot", "Дякую! Ваше повідомлення буде надіслане оператору.");
+        fetch("/api/sendTelegram", {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({ message: text })
+        })
+        .then(res=>res.json())
+        .then(data=>console.log("Telegram response:", data))
+        .catch(err=>console.error("Telegram error:", err));
+    }
+});
