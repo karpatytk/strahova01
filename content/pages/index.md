@@ -15,8 +15,6 @@ title: "Головна"
 
 ---
 
-<!-- ======== ІНТЕРАКТИВНИЙ ЧАТ ЄВА ======== -->
-
 <style>
 .chat-box {
   max-width: 380px;
@@ -68,9 +66,11 @@ title: "Головна"
 
 <div class="chat-box">
   <div id="chatArea">
-    <div class="chat-message eva">Привіт! Я оператор Єва 😊  
+    <div class="chat-message eva">
+      Привіт! Я оператор Єва 😊  
       <br>Я допоможу вам оформити страховку.  
-      <br>Як вас звати?</div>
+      <br>Як вас звати?
+    </div>
   </div>
 
   <input id="chatInput" class="chat-input" placeholder="Ваша відповідь..." />
@@ -81,19 +81,22 @@ title: "Головна"
 let step = 0;
 let userData = { name: "", type: "", phone: "" };
 
-document.getElementById("sendBtn").onclick = sendMessage;
+const input = document.getElementById("chatInput");
+const chatArea = document.getElementById("chatArea");
+const sendBtn = document.getElementById("sendBtn");
+
+sendBtn.onclick = sendMessage;
 
 function addMessage(text, sender) {
-  let div = document.createElement("div");
+  const div = document.createElement("div");
   div.className = "chat-message " + sender;
   div.innerHTML = text;
-  document.getElementById("chatArea").appendChild(div);
+  chatArea.appendChild(div);
   div.scrollIntoView({behavior: "smooth"});
 }
 
 function sendMessage() {
-  let input = document.getElementById("chatInput");
-  let text = input.value.trim();
+  const text = input.value.trim();
   if (!text) return;
 
   addMessage(text, "user");
@@ -103,13 +106,11 @@ function sendMessage() {
     userData.name = text;
     setTimeout(() => addMessage("Приємно познайомитись, " + text + "! 😊<br>Який вид страховки вас цікавить?", "eva"), 500);
     step = 1;
-  }
-  else if (step === 1) {
+  } else if (step === 1) {
     userData.type = text;
     setTimeout(() => addMessage("Супер! Тепер, будь ласка, залиште свій номер телефону 📞", "eva"), 500);
     step = 2;
-  }
-  else if (step === 2) {
+  } else if (step === 2) {
     userData.phone = text;
     setTimeout(() => addMessage("Дякую! Секундочку, відправляю ваші дані оператору… ⏳", "eva"), 500);
     sendToTelegram();
@@ -118,20 +119,27 @@ function sendMessage() {
 }
 
 function sendToTelegram() {
-  const msg = `
-🔥 НОВА ЗАЯВКА З САЙТУ
-👤 Ім'я: ${userData.name}
-📌 Тип страховки: ${userData.type}
-📞 Телефон: ${userData.phone}
-  `;
-
   fetch("/api/sendTelegram", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({ message: msg })
+    body: JSON.stringify({
+      name: userData.name,
+      type: userData.type,
+      phone: userData.phone
+    })
   })
   .then(res => res.json())
-  .then(data => console.log("Telegram response:", data))
-  .catch(err => console.error("Telegram error:", err));
+  .then(data => {
+    if (data.success) {
+      addMessage("Ваші дані успішно відправлено! ✅", "eva");
+    } else {
+      addMessage("Сталася помилка при відправці. 😢", "eva");
+      console.error("Telegram error:", data);
+    }
+  })
+  .catch(err => {
+    addMessage("Сталася помилка при відправці. 😢", "eva");
+    console.error("Telegram error:", err);
+  });
 }
 </script>
