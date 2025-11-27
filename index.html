@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Страхування 360</title>
-<link rel="stylesheet" href="/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Страхування 360</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -13,44 +13,65 @@
 <header class="header">
   <div class="container header-inner">
     <div class="logo">Страхування 360</div>
-
     <nav class="nav">
       <button class="nav-btn" id="menu-btn">Меню ▾</button>
       <ul class="nav-menu" id="menu">
-        <li><a href="/pages/autocivilka.html">Автоцивілка</a></li>
-        <li><a href="/pages/green-card.html">Зелена карта</a></li>
-        <li><a href="/pages/travel.html">Туристичне страхування</a></li>
-        <li><a href="/pages/news.html">Новини</a></li>
-        <li><a href="/pages/about.html">Про нас</a></li>
+        <li><a href="content/pages/autocivilka.html">Автоцивілка</a></li>
+        <li><a href="content/pages/green-card.html">Зелена карта</a></li>
+        <li><a href="content/pages/travel.html">Туристичне страхування</a></li>
+        <li><a href="content/pages/news.html">Новини</a></li>
+        <li><a href="content/pages/about.html">Про нас</a></li>
       </ul>
     </nav>
-
     <div class="social">
       <a href="viber://chat?number=%2B380500500370" class="messenger viber">Viber</a>
-      <a href="https://wa.me/380500500370" class="messenger whatsapp">WhatsApp</a>
-      <a href="https://t.me/share/url?url=https://strahova.biz.ua" class="messenger telegram">Telegram</a>
+      <a href="https://wa.me/380500500370" target="_blank" class="messenger whatsapp">WhatsApp</a>
+      <a href="https://t.me/share/url?url=https://strahova.biz.ua" target="_blank" class="messenger telegram">Telegram</a>
     </div>
   </div>
 </header>
 
 <section class="intro container">
-  <p>Автострахування, туристичне, медичне, майно, НВ. Все оформляється онлайн або у нашому офісі.</p>
+  <p>Автострахування, туристичне, медичне, майно. Все оформляється онлайн або у нашому офісі.</p>
 </section>
 
 <div class="actions container">
   <a class="btn viber" href="viber://chat?number=%2B380500500370">💬 Viber</a>
-  <a class="btn phone" href="tel:+380500500370">📞 Дзвінок</a>
-  <a class="btn mail" href="mailto:strahova.biz.ua">✉ Email</a>
-  <a class="btn office" href="https://www.google.com/maps" target="_blank">🏢 Офіс</a>
+  <a class="btn phone" href="tel:+380500500370">📞 Зателефонувати</a>
+  <a class="btn mail" href="mailto:strahova.biz.ua">✉ Написати лист</a>
+  <a class="btn office" href="https://www.google.com/maps/place/вул.+Незалежності,+67" target="_blank">🏢 В офіс</a>
 </div>
+
+<section class="services container">
+  <div class="service">
+    <img src="images/auto.svg" alt="">
+    <div>
+      <h3>Автострахування</h3>
+      <p>ОСЦПВ, КАСКО, Зелена карта. Покриття: 500 000 грн — здоров'я, 250 000 грн — майно.</p>
+    </div>
+  </div>
+  <div class="service">
+    <img src="images/travel.svg" alt="">
+    <div>
+      <h3>Туристичне страхування</h3>
+      <p>Покриття лікування, репатріація, нещасні випадки.</p>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="container">
-    <p>Івано-Франківськ, вул. Незалежності 67, каб. 212 | +38 050 050 0370</p>
+    <p>Івано-Франківськ, вул. Незалежності 67 | +38 050 050 0370</p>
+    <p>Пн–Пт 9:00–18:00 • Онлайн 24/7</p>
   </div>
 </footer>
 
-<script src="/js/main.js"></script>
-<script src="/js/chat.js"></script>
+<script src="js/chat.js"></script>
+<script>
+document.getElementById('menu-btn').onclick = () => {
+  document.getElementById('menu').classList.toggle('open');
+};
+</script>
+
 </body>
 </html>
