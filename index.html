@@ -123,6 +123,21 @@ document.getElementById('menu-btn').onclick = () => {
     <p>Ліцензія НБУ №00004679 • Центр продажу №5 СГ ТАС</p>
   </div>
 </footer>
+
+<!-- CHAT WIDGET -->
+<div id="chat-widget" class="hidden" style="position:fixed;bottom:20px;right:20px;width:300px;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.2);padding:10px;z-index:1000;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+    <strong>Єва</strong>
+    <button id="chat-close-btn">✖</button>
+  </div>
+  <div id="chat-messages" style="max-height:250px;overflow-y:auto;margin-bottom:8px;"></div>
+  <input id="chat-input" type="text" placeholder="Ваше повідомлення..." style="width:100%;padding:6px;border-radius:6px;border:1px solid #ccc;">
+  <button id="chat-send-btn" style="margin-top:6px;width:100%;padding:6px;background:#4CAF50;color:#fff;border:none;border-radius:6px;">Надіслати</button>
+</div>
+
+<!-- CHAT OPEN BUTTON -->
+<button id="chat-open-btn" style="position:fixed;bottom:20px;right:20px;padding:10px 14px;background:#007BFF;color:#fff;border:none;border-radius:8px;cursor:pointer;z-index:1000;">💬 Чат</button>
+
 <script src="/chat.js"></script>
 
 </body>
