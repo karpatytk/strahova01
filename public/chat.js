@@ -1,56 +1,73 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const chatWidget = document.getElementById("chat-widget");
-    const chatOpenBtn = document.getElementById("chat-open-btn");
-    const chatCloseBtn = document.getElementById("chat-close-btn");
-    const chatMessages = document.getElementById("chat-messages");
-    const chatInput = document.getElementById("chat-input");
-    const chatSendBtn = document.getElementById("chat-send-btn");
+  const chatWidget = document.getElementById("chat-widget");
+  const chatOpenBtn = document.getElementById("chat-open-btn");
+  const chatCloseBtn = document.getElementById("chat-close-btn");
+  const chatMessages = document.getElementById("chat-messages");
+  const chatInput = document.getElementById("chat-input");
+  const chatSendBtn = document.getElementById("chat-send-btn");
 
-    chatOpenBtn.addEventListener("click", () => {
-        chatWidget.classList.remove("hidden");
-        chatOpenBtn.classList.add("hidden");
-    });
-    chatCloseBtn.addEventListener("click", () => {
-        chatWidget.classList.add("hidden");
-        chatOpenBtn.classList.remove("hidden");
-    });
+  let step = 0;
+  let userData = { name: "", type: "", phone: "" };
 
-    chatSendBtn.addEventListener("click", sendMessage);
-    chatInput.addEventListener("keypress", function (e) {
-        if (e.key === "Enter") sendMessage();
-    });
+  chatOpenBtn.addEventListener("click", () => {
+    chatWidget.classList.remove("hidden");
+    chatOpenBtn.classList.add("hidden");
+  });
+  chatCloseBtn.addEventListener("click", () => {
+    chatWidget.classList.add("hidden");
+    chatOpenBtn.classList.remove("hidden");
+  });
 
-    function sendMessage() {
-        const text = chatInput.value.trim();
-        if (!text) return;
+  chatSendBtn.addEventListener("click", sendMessage);
+  chatInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") sendMessage();
+  });
 
-        appendMessage("user", text);
-        chatInput.value = "";
+  function appendMessage(sender, text) {
+    const bubble = document.createElement("div");
+    bubble.className =
+      sender === "user"
+        ? "bg-blue-500 text-white p-2 rounded-lg mb-2 self-end max-w-[80%]"
+        : "bg-gray-200 p-2 rounded-lg mb-2 self-start max-w-[80%]";
+    bubble.innerText = text;
+    chatMessages.appendChild(bubble);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
 
-        setTimeout(() => handleBotLogic(text), 600);
+  function sendMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    appendMessage("user", text);
+    chatInput.value = "";
+
+    if (step === 0) {
+      userData.name = text;
+      appendMessage("bot", "Прекрасно! Який вид страховки вас цікавить?");
+      step = 1;
+    } else if (step === 1) {
+      userData.type = text;
+      appendMessage("bot", "Чудово! Тепер, будь ласка, залиште свій номер телефону 📞");
+      step = 2;
+    } else if (step === 2) {
+      userData.phone = text;
+      appendMessage("bot", "Дякую! Відправляю ваші дані… ⏳");
+      sendToEmail();
+      step = 3;
     }
+  }
 
-    function appendMessage(sender, text) {
-        let bubble = document.createElement("div");
-        bubble.className =
-            sender === "user"
-                ? "bg-blue-500 text-white p-2 rounded-lg mb-2 self-end max-w-[80%]"
-                : "bg-gray-200 p-2 rounded-lg mb-2 self-start max-w-[80%]";
-        bubble.innerText = text;
-        chatMessages.appendChild(bubble);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    function handleBotLogic(text) {
-        appendMessage("bot", "Дякую! Я передам повідомлення оператору…");
-
-        fetch("/api/sendTelegram", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: text })
-        })
-        .then(res => res.json())
-        .then(data => console.log("Telegram API response:", data))
-        .catch(err => console.error("Telegram API error:", err));
-    }
+  function sendToEmail() {
+    fetch("/api/sendMail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) appendMessage("bot", "Ваші дані успішно надіслані ✅");
+        else appendMessage("bot", "Сталася помилка при відправці ❌");
+      })
+      .catch(() => appendMessage("bot", "Сталася помилка при відправці ❌"));
+  }
 });
