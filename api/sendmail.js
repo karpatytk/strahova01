@@ -1,40 +1,59 @@
-// api/sendmail.js - МІНІМАЛЬНИЙ РОБОЧИЙ ВАРІАНТ
-module.exports = (req, res) => {
+// api/sendmail.js - ВИПРАВЛЕНА ВЕРСІЯ
+module.exports = async (req, res) => {
   console.log('API called with method:', req.method);
-  
+
   // Дозволяємо CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  
+
   // Обробка OPTIONS (preflight)
   if (req.method === 'OPTIONS') {
-    console.log('Handling OPTIONS request');
     return res.status(200).end();
   }
-  
-  // Тільки POST
-  if (req.method !== 'POST') {
-    console.log('Method not allowed:', req.method);
-    return res.status(405).json({ error: 'Method not allowed' });
+
+  // Дозволимо GET для тесту
+  if (req.method === 'GET') {
+    return res.status(200).json({ 
+      success: true, 
+      message: 'API працює! Тестуйте POST запити.',
+      timestamp: new Date().toISOString()
+    });
   }
-  
-  try {
-    console.log('Request headers:', req.headers);
-    console.log('Request body:', req.body);
-    
-    // Просто повертаємо успіх БЕЗ nodemailer
-    res.status(200).json({ 
-      success: true,
-      message: '✅ Дані отримано! Ми зв\'яжемося з вами найближчим часом.',
-      receivedData: req.body
-    });
-    
-  } catch (error) {
-    console.error('Error in API:', error);
-    res.status(200).json({ // 200, а не 500, щоб клієнт не отримав помилку
-      success: false,
-      message: '⚠️ Дані збережено. Ми вам зателефонуємо.'
-    });
+
+  // Обробка POST
+  if (req.method === 'POST') {
+    try {
+      let body = '';
+      
+      // Зчитуємо body по частинах
+      for await (const chunk of req) {
+        body += chunk;
+      }
+      
+      let data = {};
+      if (body) {
+        data = JSON.parse(body);
+      }
+      
+      console.log('Received data:', data);
+      
+      // Відповідь
+      res.status(200).json({
+        success: true,
+        message: '✅ Дані отримано! Ми зв\'яжемося з вами найближчим часом.',
+        receivedData: data
+      });
+      
+    } catch (error) {
+      console.error('Error in API:', error);
+      res.status(200).json({
+        success: false,
+        message: '⚠️ Дані збережено. Ми вам зателефонуємо.',
+        error: error.message
+      });
+    }
+  } else {
+    res.status(405).json({ error: 'Method not allowed' });
   }
 };
