@@ -1,5 +1,13 @@
 // api/sendmail.js - ПРАЦЮЮЧА ВЕРСІЯ З TELEGRAM
+// api/sendmail.js
 const axios = require('axios');
+
+module.exports = async (req, res) => {
+  // Встановлюємо JSON content-type
+  res.setHeader('Content-Type', 'application/json');
+  
+  // ... решта коду ...
+};
 
 module.exports = async (req, res) => {
   // CORS headers
