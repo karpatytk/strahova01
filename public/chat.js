@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = document.getElementById("message").value.trim();
 
     try {
-      const res = await fetch("/api/sendmail", {
+      const res = await fetch("/api/sendMail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
