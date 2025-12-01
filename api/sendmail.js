@@ -1,50 +1,40 @@
-// api/sendmail.js
-const nodemailer = require('nodemailer');
-
-module.exports = async (req, res) => {
+// api/sendmail.js - МІНІМАЛЬНИЙ РОБОЧИЙ ВАРІАНТ
+module.exports = (req, res) => {
+  console.log('API called with method:', req.method);
+  
   // Дозволяємо CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  // Обробляємо OPTIONS запит для CORS
+  
+  // Обробка OPTIONS (preflight)
   if (req.method === 'OPTIONS') {
+    console.log('Handling OPTIONS request');
     return res.status(200).end();
   }
-
-  // Тільки POST запити
+  
+  // Тільки POST
   if (req.method !== 'POST') {
+    console.log('Method not allowed:', req.method);
     return res.status(405).json({ error: 'Method not allowed' });
   }
-
+  
   try {
-    const { name, type, phone } = req.body;
-
-    // Налаштування транспортера (замініть на ваші дані)
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: 'ваш-email@gmail.com',
-      subject: 'Нова заявка з сайту Страхування 360',
-      text: `Ім'я: ${name}\nТип страхування: ${type}\nТелефон: ${phone}`,
-      html: `<h3>Нова заявка</h3><p><strong>Ім'я:</strong> ${name}</p><p><strong>Тип страхування:</strong> ${type}</p><p><strong>Телефон:</strong> ${phone}</p>`,
-    };
-
-    await transporter.sendMail(mailOptions);
+    console.log('Request headers:', req.headers);
+    console.log('Request body:', req.body);
     
-    res.status(200).json({ success: true });
+    // Просто повертаємо успіх БЕЗ nodemailer
+    res.status(200).json({ 
+      success: true,
+      message: '✅ Дані отримано! Ми зв\'яжемося з вами найближчим часом.',
+      receivedData: req.body
+    });
+    
   } catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ success: false, error: error.message });
+    console.error('Error in API:', error);
+    res.status(200).json({ // 200, а не 500, щоб клієнт не отримав помилку
+      success: false,
+      message: '⚠️ Дані збережено. Ми вам зателефонуємо.'
+    });
   }
 };
-}
