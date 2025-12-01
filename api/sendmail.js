@@ -1,46 +1,50 @@
-import nodemailer from "nodemailer";
+// api/sendmail.js
+const nodemailer = require('nodemailer');
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Метод не дозволено" });
+module.exports = async (req, res) => {
+  // Дозволяємо CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Обробляємо OPTIONS запит для CORS
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
   }
 
-  const { name, type, phone } = req.body;
-
-  if (!name || !type || !phone) {
-    return res.status(400).json({ error: "Не всі дані заповнені" });
-  }
-
-  const EMAIL_USER = process.env.EMAIL_USER;
-  const EMAIL_PASS = process.env.EMAIL_PASS;
-  const EMAIL_TO   = process.env.EMAIL_TO;
-
-  if (!EMAIL_USER || !EMAIL_PASS || !EMAIL_TO) {
-    return res.status(500).json({ error: "Помилка конфігурації пошти" });
+  // Тільки POST запити
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
+    const { name, type, phone } = req.body;
+
+    // Налаштування транспортера (замініть на ваші дані)
     const transporter = nodemailer.createTransport({
-      service: "gmail", // можна інший SMTP
-      auth: { user: EMAIL_USER, pass: EMAIL_PASS },
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
     });
 
-    await transporter.sendMail({
-      from: EMAIL_USER,
-      to: EMAIL_TO,
-      subject: "Нова заявка з сайту Страхування 360",
-      text: `
-Нова заявка з сайту:
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: 'ваш-email@gmail.com',
+      subject: 'Нова заявка з сайту Страхування 360',
+      text: `Ім'я: ${name}\nТип страхування: ${type}\nТелефон: ${phone}`,
+      html: `<h3>Нова заявка</h3><p><strong>Ім'я:</strong> ${name}</p><p><strong>Тип страхування:</strong> ${type}</p><p><strong>Телефон:</strong> ${phone}</p>`,
+    };
 
-Ім'я: ${name}
-Тип страховки: ${type}
-Телефон: ${phone}
-      `
-    });
-
+    await transporter.sendMail(mailOptions);
+    
     res.status(200).json({ success: true });
-  } catch (err) {
-    console.error("EMAIL ERROR:", err);
-    res.status(500).json({ error: "Помилка при відправці email", details: err.message });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ success: false, error: error.message });
   }
+};
 }
