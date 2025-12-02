@@ -1,4 +1,4 @@
-// js/chat.js - ПОВНА ВЕРСІЯ
+// js/chat.js - ОНОВЛЕНА ВЕРСІЯ ДЛЯ МОБІЛЬНИХ
 document.addEventListener("DOMContentLoaded", () => {
   console.log("✅ Чат завантажено");
 
@@ -12,43 +12,69 @@ document.addEventListener("DOMContentLoaded", () => {
   let step = 0;
   let userData = { name: "", type: "", phone: "" };
 
+  // Функція для мобільного скролу
+  function scrollChatToBottom() {
+    setTimeout(() => {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      // Для мобільних - додатковий скрол
+      if (window.innerWidth <= 768) {
+        chatWidget.scrollTop = chatWidget.scrollHeight;
+      }
+    }, 100);
+  }
+
   // Показати чат
   chatOpenBtn.addEventListener("click", () => {
     chatWidget.classList.remove("hidden");
     chatOpenBtn.classList.add("hidden");
     chatInput.focus();
+    scrollChatToBottom();
+    
+    // На мобільних - фікс позиції
+    if (window.innerWidth <= 768) {
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => {
+        chatWidget.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 100);
+    }
   });
 
   // Сховати чат
   chatCloseBtn.addEventListener("click", () => {
     chatWidget.classList.add("hidden");
     chatOpenBtn.classList.remove("hidden");
+    if (window.innerWidth <= 768) {
+      document.body.style.overflow = 'auto';
+    }
   });
 
-  // Відправка по кнопці
+  // Відправка
   chatSendBtn.addEventListener("click", sendMessage);
-  
-  // Відправка по Enter
   chatInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") sendMessage();
   });
 
-  // Додати повідомлення в чат
+  // Додати повідомлення
   function appendMessage(sender, text) {
-    console.log(`💬 ${sender}: ${text}`);
-    
     const bubble = document.createElement("div");
-    bubble.style.cssText = 
-      sender === "user"
-        ? "background: #007BFF; color: white; padding: 8px 12px; border-radius: 12px 12px 0 12px; margin: 4px 0; max-width: 80%; align-self: flex-end; word-wrap: break-word;"
+    
+    // Стилі для мобільних та десктоп
+    if (sender === "user") {
+      bubble.style.cssText = window.innerWidth <= 768 
+        ? "background: #007BFF; color: white; padding: 10px 14px; border-radius: 18px 18px 4px 18px; margin: 8px 0; max-width: 85%; align-self: flex-end; word-wrap: break-word; font-size: 14px;"
+        : "background: #007BFF; color: white; padding: 8px 12px; border-radius: 12px 12px 0 12px; margin: 4px 0; max-width: 80%; align-self: flex-end; word-wrap: break-word;";
+    } else {
+      bubble.style.cssText = window.innerWidth <= 768
+        ? "background: #f1f1f1; color: #333; padding: 10px 14px; border-radius: 18px 18px 18px 4px; margin: 8px 0; max-width: 85%; align-self: flex-start; word-wrap: break-word; font-size: 14px;"
         : "background: #f1f1f1; color: #333; padding: 8px 12px; border-radius: 12px 12px 12px 0; margin: 4px 0; max-width: 80%; align-self: flex-start; word-wrap: break-word;";
+    }
     
     bubble.innerText = text;
     chatMessages.appendChild(bubble);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    scrollChatToBottom();
   }
 
-  // Головна функція відправки
+  // Відправка повідомлення
   function sendMessage() {
     const text = chatInput.value.trim();
     if (!text) return;
@@ -75,8 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Відправка на сервер
   function sendToEmail() {
-    console.log("🚀 Відправляю дані на сервер:", userData);
-    
     fetch("/api/sendmail", {
       method: "POST",
       headers: { 
@@ -85,25 +109,15 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       body: JSON.stringify(userData)
     })
-    .then(response => {
-      console.log("📨 Статус відповіді:", response.status, response.statusText);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      }
-      
-      return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-      console.log("✅ Дані від сервера:", data);
-      
       if (data.success === true) {
         appendMessage("bot", data.message || "✅ Дані успішно надіслані!");
       } else {
-        appendMessage("bot", data.message || "⚠️ Сталася помилка при відправці");
+        appendMessage("bot", data.message || "⚠️ Сталася помилка");
       }
       
-      // Скидаємо чат через 2 секунди
+      // Скидаємо чат
       setTimeout(() => {
         step = 0;
         userData = { name: "", type: "", phone: "" };
@@ -112,8 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
     })
     .catch(error => {
-      console.error("❌ Помилка відправки:", error);
-      
+      console.error("Помилка:", error);
       appendMessage("bot", "📞 Дані збережено. Ми вам зателефонуємо!");
       
       // Скидаємо
@@ -126,17 +139,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Авто-фокус при відкритті
-  chatOpenBtn.addEventListener("click", () => {
-    setTimeout(() => {
-      chatInput.focus();
-    }, 100);
-  });
-
-  // Ініціалізація першого повідомлення
-  setTimeout(() => {
-    if (!chatWidget.classList.contains("hidden")) {
-      appendMessage("bot", "Вітаю! Я Єва, ваш віртуальний помічник. Як вас звати?");
-    }
-  }, 1000);
+  // Фікс для iOS клавіатури
+  if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+    chatInput.addEventListener('focus', () => {
+      setTimeout(() => {
+        document.activeElement.scrollIntoViewIfNeeded();
+      }, 300);
+    });
+  }
 });
