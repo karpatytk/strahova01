@@ -1,32 +1,621 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Зелена карта | Страхування 360</title>
-  <link rel="stylesheet" href="../../style.css"> <!-- шлях до твоєго CSS -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Зелена карта 2026 | Оформити для виїзду за кордон | Івано-Франківськ</title>
+  <meta name="description" content="Оформити Зелену карту 2026 для авто в Івано-Франківську онлайн. ⚠️ Росія та Білорусь виключені. Ціни: 15 днів - 1100 грн, 1 місяць - 2100 грн.">
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMFDMGF5NX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MMFDMGF5NX');
+  </script>
+
+  <style>
+    /* Основні стилі */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Гаряча лінія */
+    .hotline { 
+      background: linear-gradient(to right, #1e7e34, #2d973b); 
+      color: white; 
+      text-align: center; 
+      padding: 10px; 
+      font-size: 14px; 
+    }
+    .hotline a { color: white; text-decoration: none; font-weight: bold; }
+    
+    /* Кнопки */
+    .btn-green {
+      background: #ffc107;
+      color: #333;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-green:hover {
+      background: #e0a800;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+    }
+    
+    /* Цінова таблиця */
+    .price-table {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin: 30px auto;
+      max-width: 1000px;
+    }
+    .price-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 2px solid #1e7e34;
+    }
+    .price-card .term { font-size: 18px; font-weight: bold; color: #1e7e34; }
+    .price-card .price { font-size: 24px; font-weight: bold; color: #d9534f; margin: 10px 0; }
+    
+    /* Калькулятор */
+    .calculator {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 15px;
+      margin: 40px auto;
+      max-width: 600px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ced4da;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    
+    /* Чат-віджет */
+    #chat-widget {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 350px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+      padding: 20px;
+      z-index: 1000;
+      border: 1px solid #ddd;
+    }
+    #chat-widget.hidden { display: none; }
+    #chat-open-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 15px 25px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 999;
+      font-size: 16px;
+      box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    /* Адаптивність */
+    @media (max-width: 768px) {
+      .price-table { grid-template-columns: repeat(2, 1fr); }
+      .calculator { padding: 20px; }
+      #chat-widget { 
+        width: calc(100vw - 40px); 
+        right: 20px; 
+        left: 20px; 
+        bottom: 90px; 
+      }
+    }
+  </style>
 </head>
 <body>
-
-<header class="header">
-  <div class="container header-inner">
-    <div class="logo">Страхування 360</div>
-  </div>
-</header>
-
-<main class="container" style="text-align: center; padding: 40px 20px;">
-  <h1>Зелена карта</h1>
-  <p style="font-size:18px; margin:20px 0;">Сайт у процесі наповнення</p>
-
-  <div style="margin: 20px 0;">
-    <p style="font-size:16px;">Телефон: <a href="tel:+380500500370">+38 050 050 0370</a></p>
+  <!-- Гаряча лінія -->
+  <div class="hotline">
+    <strong>📞 Консультація з Зеленої карти:</strong>
+    <a href="tel:+380500500370">+38 050 050 0370</a>
   </div>
 
-  <div style="margin-top: 30px;">
-    <a href="../../index.html" class="btn">Повернутися на головну</a>
-  </div>
-</main>
+  <!-- Навігація -->
+  <header style="padding: 20px 0; border-bottom: 1px solid #eee;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <div style="font-size: 24px; font-weight: bold; color: #1e7e34;">
+        <a href="/" style="color: inherit; text-decoration: none;">Страхування 360</a>
+      </div>
+      <nav>
+        <a href="/" style="margin: 0 10px; text-decoration: none; color: #333;">Головна</a>
+        <a href="/zelenakarta" style="margin: 0 10px; text-decoration: none; color: #1e7e34; font-weight: bold;">Зелена карта</a>
+      </nav>
+    </div>
+  </header>
 
-<script src="../../menu.js"></script>
+  <main>
+    <!-- Герой -->
+    <section style="background: linear-gradient(135deg, #1e7e34 0%, #2d973b 100%); color: white; padding: 60px 0; text-align: center;">
+      <div class="container">
+        <h1 style="font-size: 2.5rem; margin-bottom: 20px;">Зелена карта 2026 для виїзду в Європу</h1>
+        <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px;">
+          Офіційне автострахування для поїздок за кордон. Електронний поліс за 15 хвилин.
+          ⚠️ <strong>Росія та Білорусь виключені із системи "Зелена карта"</strong>.
+        </p>
+        
+        <div style="background: white; color: #1e7e34; display: inline-block; padding: 10px 40px; border-radius: 50px; font-size: 1.8rem; font-weight: bold; margin: 20px 0;">
+          Орієнтовна ціна від <span>1100</span> грн
+        </div>
+        
+        <!-- Таблиця цін -->
+        <div class="price-table">
+          <div class="price-card">
+            <div class="term">15 днів</div>
+            <div class="price">1100 грн</div>
+            <div>легкова</div>
+          </div>
+          <div class="price-card">
+            <div class="term">1 місяць</div>
+            <div class="price">2100 грн</div>
+            <div>легкова</div>
+          </div>
+          <div class="price-card">
+            <div class="term">3 місяці</div>
+            <div class="price">5100 грн</div>
+            <div>легкова</div>
+          </div>
+          <div class="price-card">
+            <div class="term">1 рік</div>
+            <div class="price">13800 грн</div>
+            <div>легкова</div>
+          </div>
+        </div>
+        
+        <p><small>⚠️ Для автобусів та вантажівок ціна вища (уточнюйте).<br>⚠️ Росія та Білорусь виключені із системи.</small></p>
+        
+        <button id="calc-open-btn" class="btn-green" style="margin-top: 20px;">
+          <span>🧮</span> РОЗРАХУВАТИ ДЛЯ СВОГО АВТО
+        </button>
+      </div>
+    </section>
+
+    <!-- Калькулятор -->
+    <section id="calculator" class="calculator container" style="display:none;">
+      <h2 style="text-align:center; color:#1e7e34; margin-bottom: 30px;">Калькулятор вартості Зеленої карти</h2>
+      <form id="calc-form">
+        <div class="form-group">
+          <label for="period" style="display:block; margin-bottom:8px; font-weight:bold;">Оберіть термін страхування:</label>
+          <select id="period" class="form-control" required>
+            <option value="15">15 днів (орієнтовно 1100 грн)</option>
+            <option value="30" selected>1 місяць (орієнтовно 2100 грн)</option>
+            <option value="90">3 місяці (орієнтовно 5100 грн)</option>
+            <option value="365">1 рік (орієнтовно 13800 грн)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="auto-type" style="display:block; margin-bottom:8px; font-weight:bold;">Тип авто:</label>
+          <select id="auto-type" class="form-control">
+            <option value="light" selected>Легкове авто (стандартна ціна)</option>
+            <option value="bus">Автобус (ціна вища в 2-4 рази)</option>
+            <option value="truck">Вантажівка (ціна вища в 2-4 рази)</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="btn-green" style="width:100%;">
+          <span>💰</span> ОТРИМАТИ ОРІЄНТОВНУ ВАРТІСТЬ
+        </button>
+      </form>
+      
+      <div id="calc-result" style="background: white; padding: 20px; border-radius: 10px; margin-top: 30px; text-align: center; display: none;">
+        <h3 style="color:#1e7e34;">Орієнтовна вартість:</h3>
+        <div id="result-price" style="font-size:2.5rem; color:#d9534f; font-weight:bold; margin: 10px 0;">0 грн</div>
+        <p id="result-details" style="color:#666; margin-bottom: 20px;"></p>
+        <p><strong>📞 Для точної ціни напишіть нашій консультантці Єві!</strong></p>
+        <button id="chat-open-from-calc" class="btn-green" style="margin-top:15px;">
+          <span>💬</span> НАПИСАТИ ЄВІ ЗАРАЗ
+        </button>
+      </div>
+    </section>
+
+    <!-- Форма заявки -->
+    <section class="container" style="margin: 60px auto;">
+      <h2 style="text-align:center; color:#1e7e34; margin-bottom: 30px;">Оформити заявку на Зелену карту</h2>
+      
+      <form id="green-card-form" style="max-width:600px; margin: 0 auto;">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Ваше ПІБ *" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" class="form-control" placeholder="Телефон *" required>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Email *" required>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" placeholder="Додаткова інформація (тип авто, країна призначення тощо)" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn-green" style="width:100%;">
+          <span>📨</span> ВІДПРАВИТИ ЗАЯВКУ НА РОЗРАХУНОК
+        </button>
+      </form>
+      
+      <div id="form-success" style="display:none; text-align:center; padding: 40px 0;">
+        <div style="font-size: 4rem; color: #1e7e34; margin-bottom: 20px;">✅</div>
+        <h3 style="color:#1e7e34;">Заявку прийнято!</h3>
+        <p style="margin: 20px 0;">Наш менеджер зв'яжеться з вами протягом <strong>15 хвилин</strong>.</p>
+        <p style="margin-bottom: 30px;">Або напишіть прямо в чат для швидшої консультації:</p>
+        <button id="chat-open-from-form" class="btn-green">
+          <span>💬</span> ПЕРЕЙТИ В ЧАТ ДО ЄВИ
+        </button>
+      </div>
+    </section>
+
+    <!-- FAQ (можете вставити вашу версію тут) -->
+    <section class="container" style="margin: 60px auto;">
+      <h2 style="text-align:center; color:#1e7e34; margin-bottom: 30px;">Відповіді на ваші запитання</h2>
+      <!-- Тут буде ваш FAQ код -->
+	  <!-- ==================== РОЗДІЛ FAQ (ПРОСТИЙ, БЕЗ КЛІКІВ) ==================== -->
+<section class="container" style="max-width: 900px; margin: 2rem auto;">
+      <div style="background:#f8f9fa;padding:1.5rem;border-radius:12px;border-left:4px solid #1e7e34;">
+        <!-- Питання 1 -->
+        <div style="margin-bottom:1.5rem;">
+            <h3 style="color:#1e7e34;margin-bottom:0.5rem;font-size:1.2rem;">
+                📌 Чи потрібна зелена карта при подорожі за кордон?
+            </h3>
+            <p style="margin:0;line-height:1.5;">
+                Якщо ви подорожуєте автомобілем за кордон, обов'язково потрібна зелена карта. Це міжнародне автострахування, яке є обов'язковим для в'їзду в країни системи "Зелена карта".
+            </p>
+        </div>
+        
+        <!-- Питання 2 -->
+        <div style="margin-bottom:1.5rem;">
+            <h3 style="color:#1e7e34;margin-bottom:0.5rem;font-size:1.2rem;">
+                💰 Скільки коштує зелена карта на авто?
+            </h3>
+            <p style="margin:0;line-height:1.5;">
+                Ціна зеленої карти на авто залежить від терміну вашої подорожі та виду транспорту. Орієнтовні ціни для легкового авто: 15 днів — 1100 грн, 1 місяць — 2100 грн. Для автобусів та вантажівок ціна вища.
+            </p>
+        </div>
+        
+        <!-- Питання 3 -->
+        <div style="margin-bottom:1.5rem;">
+            <h3 style="color:#1e7e34;margin-bottom:0.5rem;font-size:1.2rem;">
+                📅 На який термін можна купити зелену карту?
+            </h3>
+            <p style="margin:0;line-height:1.5;">
+                Зелену карту можна купити на 15 і 21 день, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 місяців. Найпопулярніші варіанти — 15 днів, 1 місяць та 3 місяці.
+            </p>
+        </div>
+        
+        <!-- Питання 4 -->
+        <div style="margin-bottom:1.5rem;">
+            <h3 style="color:#1e7e34;margin-bottom:0.5rem;font-size:1.2rem;">
+                🏷️ Який вигляд має зелена карта на авто?
+            </h3>
+            <p style="margin:0;line-height:1.5;">
+                Зразок зеленої карти знаходиться на сайті МТСБУ. 
+                <a href="https://mtsbu.ua/storage/app/uploads/public/677/400/669/677400669cf43423201506.pdf" 
+                   target="_blank" 
+                   style="color:#1e7e34;font-weight:bold;text-decoration:none;">
+                    Приклад поліса →
+                </a>
+            </p>
+        </div>
+        
+        <!-- Питання 5 (ДОДАНО) -->
+        <div style="margin-bottom:1.5rem;">
+            <h3 style="color:#1e7e34;margin-bottom:0.5rem;font-size:1.2rem;">
+                ⚠️ Чи діє зелена карта в Росії та Білорусі?
+            </h3>
+            <p style="margin:0;line-height:1.5;">
+                <strong>Ні.</strong> З 2022 року Росія та Білорусь виключені із системи "Зелена карта". Поліс для поїздок до цих країн не оформлюється.
+            </p>
+        </div>
+        
+        <!-- Питання 6 (ДОДАНО) -->
+        <div style="margin-bottom:1.5rem;">
+            <h3 style="color:#1e7e34;margin-bottom:0.5rem;font-size:1.2rem;">
+                ⚡ Чи діє електронна зелена карта?
+            </h3>
+            <p style="margin:0;line-height:1.5;">
+                <strong>Так.</strong> Електронна зелена карта (e-Green Card) має ту ж юридичну силу, що й паперова. Поліс надсилається на email і визнається на всіх кордонах.
+            </p>
+        </div>
+        
+        <!-- Питання 7 (ДОДАНО) -->
+        <div>
+            <h3 style="color:#1e7e34;margin-bottom:0.5rem;font-size:1.2rem;">
+                🛡️ Що означає купити зелену карту у Страхування 360?
+            </h3>
+            <ul style="margin:0;padding-left:1.2rem;line-height:1.5;">
+                <li>Оформлення без агентів і переплат</li>
+                <li>Готовий поліс реєструється в базі МТСБУ</li>
+                <li>Безпечна онлайн-оплата</li>
+                <li>Зелена карта від провідних страховиків: СГ ТАС, УСГ, СК Княжа, СК УТСК</li>
+                <li>Електронний поліс за 15 хвилин</li>
+                <li>Цілодобова підтримка у дорозі</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Додаткова інформація -->
+    <div style="text-align:center;margin-top:2rem;padding:1.5rem;background:#e9f7ef;border-radius:10px;">
+        <p style="margin:0;color:#1e7e34;">
+            <strong>Залишилися питання?</strong> Напишіть нашій консультантці Єві або зателефонуйте 
+            <a href="tel:+380500500370" style="color:#1e7e34;font-weight:bold;text-decoration:none;">+38 050 050 0370</a>
+        </p>
+    </div>
+</section>
+    </section>
+  </main>
+
+  <footer style="background: #f8f9fa; padding: 40px 0; margin-top: 60px;">
+    <div class="container">
+      <div style="text-align:center;">
+        <p><strong>Страхування 360 — страхова компанія Івано-Франківськ</strong></p>
+        <p>вул. Незалежності 67, каб. 212, Івано-Франківськ</p>
+        <p><a href="tel:+380500500370" style="color:#1e7e34; text-decoration:none;">+38 050 050 0370</a></p>
+        <p>Пн–Пт 9:00–18:00 • Онлайн консультації 24/7</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Чат-віджет Єва -->
+  <div id="chat-widget" class="hidden">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+      <strong style="font-size: 18px;">Єва — консультант зі страхування</strong>
+      <button id="chat-close-btn" style="background:none; border:none; font-size:20px; cursor:pointer;">✖</button>
+    </div>
+    <div id="chat-messages" style="height:300px; overflow-y:auto; margin-bottom:15px; padding:10px; background:#f9f9f9; border-radius:8px;">
+      <div style="background:#f1f1f1; padding:10px; border-radius:8px; margin-bottom:10px; max-width:80%;">
+        <strong>Єва:</strong> Вітаю! Я Єва, ваш консультант зі страхування. Як до вас звертатися?
+      </div>
+    </div>
+    <input id="chat-input" type="text" placeholder="Напишіть ваше повідомлення..." style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px; font-size:16px;">
+    <button id="chat-send-btn" style="width:100%; padding:12px; background:#4CAF50; color:white; border:none; border-radius:6px; font-size:16px; margin-top:10px; cursor:pointer;">Надіслати</button>
+  </div>
+
+  <button id="chat-open-btn">
+    <span>💬</span> Консультація з Євою
+  </button>
+
+  <!-- Підключення chat.js -->
+  <script>
+    // Логіка калькулятора
+    const calcOpenBtn = document.getElementById('calc-open-btn');
+    const calculator = document.getElementById('calculator');
+    const calcForm = document.getElementById('calc-form');
+    const calcResult = document.getElementById('calc-result');
+    const resultPrice = document.getElementById('result-price');
+    const resultDetails = document.getElementById('result-details');
+    
+    const basePrices = { '15': 1100, '30': 2100, '90': 5100, '365': 13800 };
+    
+    calcOpenBtn.addEventListener('click', () => {
+      calculator.style.display = 'block';
+      window.scrollTo({ top: calculator.offsetTop - 50, behavior: 'smooth' });
+    });
+    
+    calcForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const period = document.getElementById('period').value;
+      const autoType = document.getElementById('auto-type').value;
+      
+      let price = basePrices[period];
+      let multiplier = 1;
+      let autoTypeText = 'легкове авто';
+      
+      if (autoType === 'bus' || autoType === 'truck') {
+        multiplier = 3;
+        autoTypeText = autoType === 'bus' ? 'автобус' : 'вантажівка';
+      }
+      
+      const finalPrice = price * multiplier;
+      resultPrice.textContent = Math.round(finalPrice) + ' грн';
+      resultDetails.textContent = `Для ${autoTypeText} на ${period === '30' ? '1 місяць' : period === '365' ? '1 рік' : period + ' днів'}`;
+      calcResult.style.display = 'block';
+      calcResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+    
+    // Відкриття чату з кнопок
+    document.getElementById('chat-open-from-calc')?.addEventListener('click', () => {
+      document.getElementById('chat-open-btn').click();
+    });
+    
+    document.getElementById('chat-open-from-form')?.addEventListener('click', () => {
+      document.getElementById('chat-open-btn').click();
+    });
+    
+    // Форма заявки
+    document.getElementById('green-card-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+      
+      // Відправка в Google Analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_submit', {
+          'event_category': 'lead_generation',
+          'event_label': 'green_card_form'
+        });
+      }
+    });
+  </script>
+
+  <!-- Ваш chat.js -->
+  <script>
+    // js/chat.js - ОНОВЛЕНА ВЕРСІЯ ДЛЯ МОБІЛЬНИХ
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("✅ Чат завантажено");
+
+      const chatWidget = document.getElementById("chat-widget");
+      const chatOpenBtn = document.getElementById("chat-open-btn");
+      const chatCloseBtn = document.getElementById("chat-close-btn");
+      const chatMessages = document.getElementById("chat-messages");
+      const chatInput = document.getElementById("chat-input");
+      const chatSendBtn = document.getElementById("chat-send-btn");
+
+      let step = 0;
+      let userData = { name: "", type: "", phone: "" };
+
+      // Функція для мобільного скролу
+      function scrollChatToBottom() {
+        setTimeout(() => {
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          // Для мобільних - додатковий скрол
+          if (window.innerWidth <= 768) {
+            chatWidget.scrollTop = chatWidget.scrollHeight;
+          }
+        }, 100);
+      }
+
+      // Показати чат
+      chatOpenBtn.addEventListener("click", () => {
+        chatWidget.classList.remove("hidden");
+        chatOpenBtn.classList.add("hidden");
+        chatInput.focus();
+        scrollChatToBottom();
+        
+        // На мобільних - фікс позиції
+        if (window.innerWidth <= 768) {
+          document.body.style.overflow = 'hidden';
+          setTimeout(() => {
+            chatWidget.scrollIntoView({ behavior: 'smooth', block: 'end' });
+          }, 100);
+        }
+      });
+
+      // Сховати чат
+      chatCloseBtn.addEventListener("click", () => {
+        chatWidget.classList.add("hidden");
+        chatOpenBtn.classList.remove("hidden");
+        if (window.innerWidth <= 768) {
+          document.body.style.overflow = 'auto';
+        }
+      });
+
+      // Відправка
+      chatSendBtn.addEventListener("click", sendMessage);
+      chatInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") sendMessage();
+      });
+
+      // Додати повідомлення
+      function appendMessage(sender, text) {
+        const bubble = document.createElement("div");
+        
+        // Стилі для мобільних та десктоп
+        if (sender === "user") {
+          bubble.style.cssText = window.innerWidth <= 768 
+            ? "background: #007BFF; color: white; padding: 10px 14px; border-radius: 18px 18px 4px 18px; margin: 8px 0; max-width: 85%; align-self: flex-end; word-wrap: break-word; font-size: 14px;"
+            : "background: #007BFF; color: white; padding: 8px 12px; border-radius: 12px 12px 0 12px; margin: 4px 0; max-width: 80%; align-self: flex-end; word-wrap: break-word;";
+        } else {
+          bubble.style.cssText = window.innerWidth <= 768
+            ? "background: #f1f1f1; color: #333; padding: 10px 14px; border-radius: 18px 18px 18px 4px; margin: 8px 0; max-width: 85%; align-self: flex-start; word-wrap: break-word; font-size: 14px;"
+            : "background: #f1f1f1; color: #333; padding: 8px 12px; border-radius: 12px 12px 12px 0; margin: 4px 0; max-width: 80%; align-self: flex-start; word-wrap: break-word;";
+        }
+        
+        bubble.innerText = text;
+        chatMessages.appendChild(bubble);
+        scrollChatToBottom();
+      }
+
+      // Відправка повідомлення
+      function sendMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        appendMessage("user", text);
+        chatInput.value = "";
+
+        // Логіка діалогу
+        if (step === 0) {
+          userData.name = text;
+          appendMessage("bot", "Прекрасно! Який вид страховки вас цікавить?");
+          step = 1;
+        } else if (step === 1) {
+          userData.type = text;
+          appendMessage("bot", "Чудово! Тепер, будь ласка, залиште свій номер телефону 📞");
+          step = 2;
+        } else if (step === 2) {
+          userData.phone = text;
+          appendMessage("bot", "Дякую! Відправляю ваші дані… ⏳");
+          sendToEmail();
+          step = 3;
+        }
+      }
+
+      // Відправка на сервер
+      function sendToEmail() {
+        fetch("/api/sendmail", {
+          method: "POST",
+          headers: { 
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(userData)
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success === true) {
+            appendMessage("bot", data.message || "✅ Дані успішно надіслані!");
+          } else {
+            appendMessage("bot", data.message || "⚠️ Сталася помилка");
+          }
+          
+          // Скидаємо чат
+          setTimeout(() => {
+            step = 0;
+            userData = { name: "", type: "", phone: "" };
+            appendMessage("bot", "Чим ще можу допомогти?");
+          }, 2000);
+          
+        })
+        .catch(error => {
+          console.error("Помилка:", error);
+          appendMessage("bot", "📞 Дані збережено. Ми вам зателефонуємо!");
+          
+          // Скидаємо
+          step = 0;
+          userData = { name: "", type: "", phone: "" };
+          
+          setTimeout(() => {
+            appendMessage("bot", "Чим ще можу допомогти?");
+          }, 2000);
+        });
+      }
+
+      // Фікс для iOS клавіатури
+      if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+        chatInput.addEventListener('focus', () => {
+          setTimeout(() => {
+            document.activeElement.scrollIntoViewIfNeeded();
+          }, 300);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
