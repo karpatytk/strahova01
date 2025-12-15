@@ -57,6 +57,50 @@
     ]
   }
   </script>
+  
+  <!-- ДОДАТКОВІ СТИЛІ ДЛЯ МЕНЮ (якщо потрібно) -->
+  <style>
+    /* Додаткові стилі для робочого меню */
+    .nav-menu.open {
+      display: flex !important;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      z-index: 1000;
+      margin-top: 10px;
+    }
+    
+    .nav-menu.open li {
+      width: 100%;
+      text-align: center;
+    }
+    
+    .nav-menu.open li a {
+      display: block;
+      padding: 12px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .nav-menu.open li:last-child a {
+      border-bottom: none;
+    }
+    
+    @media (min-width: 769px) {
+      .nav-btn {
+        display: none !important;
+      }
+      
+      .nav-menu {
+        display: flex !important;
+      }
+    }
+  </style>
 </head>
 <body itemscope itemtype="https://schema.org/WebPage">
 <div class="hotline" itemprop="telephone">
@@ -179,7 +223,7 @@
   </section>
 
   <section class="advantages container" aria-labelledby="advantages-title">
-    <h2 id="advantages-title" class="section-title hidden">Чому обирають Страхування 360 у Івано-Франківську</h2>
+    <h2 id="advantages-title" class="section-title hidden">Чому оббирають Страхування 360 у Івано-Франківську</h2>
     <div class="advantages-grid">
       <div class="advantage">
         <div class="icon">🏆</div>
@@ -269,25 +313,36 @@
 
 <script src="js/chat.js"></script>
 
+<!-- ВИПРАВЛЕНИЙ JavaScript ДЛЯ МЕНЮ -->
 <script>
-// Оптимізоване меню для SEO та доступності
 document.addEventListener('DOMContentLoaded', function() {
-  // Меню
+  console.log('Сторінка завантажена - меню активне');
+  
   const menuBtn = document.getElementById('menu-btn');
   const menu = document.getElementById('menu');
-  const menuText = menuBtn.querySelector('.menu-text');
-  const menuIcon = menuBtn.querySelector('.menu-icon');
   
   if (menuBtn && menu) {
+    const menuText = menuBtn.querySelector('.menu-text');
+    const menuIcon = menuBtn.querySelector('.menu-icon');
+    
+    // Відкрити/закрити меню
     menuBtn.addEventListener('click', function(e) {
       e.stopPropagation();
+      console.log('Клік по меню');
+      
       const isExpanded = menu.classList.toggle('open');
       menuBtn.setAttribute('aria-expanded', isExpanded);
-      menuText.textContent = isExpanded ? 'Закрити' : 'Меню';
-      menuIcon.textContent = isExpanded ? '×' : '▾';
+      
+      if (isExpanded) {
+        menuText.textContent = 'Закрити';
+        menuIcon.textContent = '×';
+      } else {
+        menuText.textContent = 'Меню';
+        menuIcon.textContent = '▾';
+      }
     });
     
-    // Закрити меню при кліку поза
+    // Закрити меню при кліку поза ним
     document.addEventListener('click', function(e) {
       if (menu.classList.contains('open') && 
           !menu.contains(e.target) && 
@@ -309,6 +364,8 @@ document.addEventListener('DOMContentLoaded', function() {
         menuIcon.textContent = '▾';
       });
     });
+  } else {
+    console.error('Не знайдено елементи меню');
   }
   
   // Плавна прокрутка для якорних посилань
@@ -355,29 +412,7 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', fixMobileView);
   fixMobileView();
 });
-
-// Додаткові SEO-теги для пошукових систем
-document.addEventListener('DOMContentLoaded', function() {
-  // Додаємо canonical link якщо немає
-  if (!document.querySelector('link[rel="canonical"]')) {
-    const link = document.createElement('link');
-    link.rel = 'canonical';
-    link.href = window.location.href;
-    document.head.appendChild(link);
-  }
-});
 </script>
-
-<!-- Google Analytics/GTM (розкоментуйте і додайте свій ID) -->
-<!--
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-XXXXXXXXX-X');
-</script>
--->
 
 </body>
 </html>
