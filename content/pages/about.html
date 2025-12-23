@@ -1,32 +1,396 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Про нас | Страхування 360</title>
-  <link rel="stylesheet" href="../../style.css"> <!-- шлях до твоєго CSS -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Про нас | Страхування 360 | Івано-Франківськ</title>
+  <meta name="description" content="Страхування 360 - офіційний страховий посередник занесений в реєстр НБУ. Досвід роботи 12 років. Офіс у м.Івано-Франківськ.">
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMFDMGF5NX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MMFDMGF5NX');
+  </script>
+
+  <style>
+    /* Основні стилі */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Гаряча лінія */
+    .hotline { 
+      background: linear-gradient(to right, #0057b8, #007bff); 
+      color: white; 
+      text-align: center; 
+      padding: 10px; 
+      font-size: 14px; 
+    }
+    .hotline a { color: white; text-decoration: none; font-weight: bold; }
+    
+    /* Основні стилі сторінки */
+    .about-section {
+      padding: 60px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .about-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .about-card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+    
+    .about-title {
+      color: #0057b8;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, #e8f4fd 0%, #d4e6ff 100%);
+      border-left: 5px solid #0057b8;
+      padding: 25px;
+      border-radius: 10px;
+      margin: 30px 0;
+    }
+    
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+    
+    .partner-item {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+      border: 1px solid #e0e0e0;
+    }
+    
+    .contact-info {
+      background: #0057b8;
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    
+    /* Кнопки */
+    .btn-blue {
+      background: #ffc107;
+      color: #333;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-blue:hover {
+      background: #e0a800;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+    }
+    
+    /* Чат-віджет */
+    #chat-widget {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 350px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+      padding: 20px;
+      z-index: 1000;
+      border: 1px solid #ddd;
+    }
+    #chat-widget.hidden { display: none; }
+    #chat-open-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 15px 25px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 999;
+      font-size: 16px;
+      box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    /* Адаптивність */
+    @media (max-width: 768px) {
+      .about-card {
+        padding: 25px;
+      }
+      .about-title {
+        font-size: 2rem;
+      }
+      .partners-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      #chat-widget { 
+        width: calc(100vw - 40px); 
+        right: 20px; 
+        left: 20px; 
+        bottom: 90px; 
+      }
+    }
+  </style>
 </head>
 <body>
-
-<header class="header">
-  <div class="container header-inner">
-    <div class="logo">Страхування 360</div>
-  </div>
-</header>
-
-<main class="container" style="text-align: center; padding: 40px 20px;">
-  <h1>Про нас</h1>
-  <p style="font-size:18px; margin:20px 0;">Сайт у процесі наповнення</p>
-
-  <div style="margin: 20px 0;">
-    <p style="font-size:16px;">Телефон: <a href="tel:+380500500370">+38 050 050 0370</a></p>
+  <!-- Гаряча лінія -->
+  <div class="hotline">
+    <strong>📞 Консультація зі страхування:</strong>
+    <a href="tel:+380500500370">+38 050 050 0370</a>
   </div>
 
-  <div style="margin-top: 30px;">
-    <a href="../../index.html" class="btn">Повернутися на головну</a>
-  </div>
-</main>
+  <!-- Навігація -->
+  <header style="padding: 20px 0; border-bottom: 1px solid #eee;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <div style="font-size: 24px; font-weight: bold; color: #0057b8;">
+        <a href="/" style="color: inherit; text-decoration: none;">Страхування 360</a>
+      </div>
+      <nav>
+        <a href="/" style="margin: 0 10px; text-decoration: none; color: #333;">Головна</a>
+        <a href="/zelenakarta" style="margin: 0 10px; text-decoration: none; color: #333;">Зелена карта</a>
+        <a href="/avtotsivilka" style="margin: 0 10px; text-decoration: none; color: #333;">Автоцивілка</a>
+        <a href="/about" style="margin: 0 10px; text-decoration: none; color: #0057b8; font-weight: bold;">Про нас</a>
+      </nav>
+    </div>
+  </header>
 
-<script src="../../menu.js"></script>
+  <main>
+    <!-- Секція "Про нас" -->
+    <section class="about-section">
+      <div class="container">
+        <div class="about-content">
+          <h1 class="about-title">Про Страхування 360</h1>
+          
+          <div class="about-card">
+            <div class="highlight-box">
+              <p style="font-size: 1.2rem; font-weight: bold; color: #0057b8; margin: 0;">
+                Страхування 360 - офіційний страховий посередник занесений в реєстр НБУ страхових посередників.
+              </p>
+            </div>
+            
+            <p class="about-text">
+              <strong>Досвід роботи в страхуванні - 12 років.</strong> За цей час ми допомогли тисячам клієнтів знайти оптимальні страхові рішення, захистити своє майно, здоров'я та автотранспорт.
+            </p>
+            
+            <h2 style="color: #0057b8; margin: 30px 0 20px 0;">Наші партнери</h2>
+            <p class="about-text">
+              Ми співпрацюємо з провідними страховими компаніями України, що дозволяє запропонувати вам найкращі умови:
+            </p>
+            
+            <div class="partners-grid">
+              <div class="partner-item">
+                <div style="font-size: 24px; color: #0057b8; margin-bottom: 10px;">🏢</div>
+                <div style="font-weight: bold; color: #333;">ТАС</div>
+                <div style="font-size: 14px; color: #666;">Страхова Група</div>
+              </div>
+              <div class="partner-item">
+                <div style="font-size: 24px; color: #0057b8; margin-bottom: 10px;">👑</div>
+                <div style="font-weight: bold; color: #333;">Княжа</div>
+                <div style="font-size: 14px; color: #666;">СК</div>
+              </div>
+              <div class="partner-item">
+                <div style="font-size: 24px; color: #0057b8; margin-bottom: 10px;">🛡️</div>
+                <div style="font-weight: bold; color: #333;">ББС Іншуранс</div>
+                <div style="font-size: 14px; color: #666;">СК</div>
+              </div>
+              <div class="partner-item">
+                <div style="font-size: 24px; color: #0057b8; margin-bottom: 10px;">🇪🇺</div>
+                <div style="font-weight: bold; color: #333;">Євроінс</div>
+                <div style="font-size: 14px; color: #666;">СК</div>
+              </div>
+              <div class="partner-item">
+                <div style="font-size: 24px; color: #0057b8; margin-bottom: 10px;">⚔️</div>
+                <div style="font-weight: bold; color: #333;">Гардіан</div>
+                <div style="font-size: 14px; color: #666;">СК</div>
+              </div>
+            </div>
+            
+            <p class="about-text">
+              Заключені угоди із страховими компаніями <strong>ТАС, Княжа, ББС Іншуранс, Євроінс, Гардіан</strong> гарантують вам надійність та стабільність страхового захисту.
+            </p>
+            
+            <div style="text-align: center; margin: 40px 0;">
+              <a href="/avtotsivilka" class="btn-blue">
+                <span>🚗</span> РОЗРАХУВАТИ АВТОЦИВІЛКУ
+              </a>
+              <a href="/zelenakarta" class="btn-blue" style="margin-left: 15px;">
+                <span>🌍</span> ОФОРМИТИ ЗЕЛЕНУ КАРТУ
+              </a>
+            </div>
+          </div>
+          
+          <div class="contact-info">
+            <h2 style="margin-bottom: 20px;">📍 Наш офіс</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 10px;">
+              <strong>Офіс розташований у м.Івано-Франківськ.</strong>
+            </p>
+            <p style="margin-bottom: 20px;">
+              Завітайте до нас для особистої консультації або скористайтесь онлайн-сервісами нашого сайту.
+            </p>
+            <p style="font-size: 1.1rem;">
+              📞 <a href="tel:+380500500370" style="color: white; text-decoration: none; font-weight: bold;">+38 050 050 0370</a><br>
+              📧 <a href="mailto:strahova.biz.ua@gmail.com" style="color: white; text-decoration: none;">info@strahova.biz.ua</a>
+            </p>
+          </div>
+          
+          <div class="highlight-box" style="margin-top: 40px; text-align: center;">
+            <p style="font-size: 1.2rem; font-weight: bold; color: #0057b8; margin: 0;">
+              З нами ви оберете найкращий варіант страхування за оптимальною ціною!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background: #f8f9fa; padding: 40px 0; margin-top: 60px;">
+    <div class="container">
+      <div style="text-align:center;">
+        <p><strong>Страхування 360 — страхова компанія Івано-Франківськ</strong></p>
+        <p>вул. Незалежності 67, каб. 212, Івано-Франківськ</p>
+        <p><a href="tel:+380500500370" style="color:#0057b8; text-decoration:none;">+38 050 050 0370</a></p>
+        <p>Пн–Пт 9:00–18:00 • Онлайн консультації 24/7</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Чат-віджет Єва -->
+  <div id="chat-widget" class="hidden">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+      <strong style="font-size: 18px;">Єва — консультант зі страхування</strong>
+      <button id="chat-close-btn" style="background:none; border:none; font-size:20px; cursor:pointer;">✖</button>
+    </div>
+    <div id="chat-messages" style="height:300px; overflow-y:auto; margin-bottom:15px; padding:10px; background:#f9f9f9; border-radius:8px;">
+      <div style="background:#f1f1f1; padding:10px; border-radius:8px; margin-bottom:10px; max-width:80%;">
+        <strong>Єва:</strong> Вітаю! Я Єва, ваш консультант зі страхування. Розкажіть, яке страхування вас цікавить?
+      </div>
+    </div>
+    <input id="chat-input" type="text" placeholder="Напишіть ваше повідомлення..." style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px; font-size:16px;">
+    <button id="chat-send-btn" style="width:100%; padding:12px; background:#4CAF50; color:white; border:none; border-radius:6px; font-size:16px; margin-top:10px; cursor:pointer;">Надіслати</button>
+  </div>
+
+  <button id="chat-open-btn">
+    <span>💬</span> Консультація з Євою
+  </button>
+
+  <script>
+    // Управління чатом
+    const chatWidget = document.getElementById('chat-widget');
+    const chatOpenBtn = document.getElementById('chat-open-btn');
+    const chatCloseBtn = document.getElementById('chat-close-btn');
+    
+    if (chatOpenBtn) {
+      chatOpenBtn.addEventListener('click', () => {
+        chatWidget.classList.remove('hidden');
+      });
+    }
+    
+    if (chatCloseBtn) {
+      chatCloseBtn.addEventListener('click', () => {
+        chatWidget.classList.add('hidden');
+      });
+    }
+    
+    // Відправка повідомлення в чат
+    const chatSendBtn = document.getElementById('chat-send-btn');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+    
+    if (chatSendBtn) {
+      chatSendBtn.addEventListener('click', () => {
+        const message = chatInput.value.trim();
+        if (message) {
+          // Додаємо повідомлення користувача
+          const userMsg = document.createElement('div');
+          userMsg.innerHTML = `<strong>Ви:</strong> ${message}`;
+          userMsg.style.background = '#e3f2fd';
+          userMsg.style.padding = '10px';
+          userMsg.style.borderRadius = '8px';
+          userMsg.style.marginBottom = '10px';
+          userMsg.style.marginLeft = '20%';
+          userMsg.style.maxWidth = '80%';
+          chatMessages.appendChild(userMsg);
+          
+          // Очищаємо поле вводу
+          chatInput.value = '';
+          
+          // Прокручуємо до низу
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          
+          // Симулюємо відповідь Єви через 1 секунду
+          setTimeout(() => {
+            const responses = [
+              "Дякую за ваше повідомлення! Як я можу допомогти вам зі страхуванням?",
+              "Зрозуміло! Бажаєте розрахувати вартість автоцивілки чи зеленої карти?",
+              "Чудово! Напишіть, будь ласка, який тип страхування вас цікавить.",
+              "Дякую! Для точнішої консультації можете зателефонувати на гарячу лінію."
+            ];
+            
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            
+            const evaMsg = document.createElement('div');
+            evaMsg.innerHTML = `<strong>Єва:</strong> ${randomResponse}`;
+            evaMsg.style.background = '#f1f1f1';
+            evaMsg.style.padding = '10px';
+            evaMsg.style.borderRadius = '8px';
+            evaMsg.style.marginBottom = '10px';
+            evaMsg.style.maxWidth = '80%';
+            chatMessages.appendChild(evaMsg);
+            
+            // Прокручуємо до низу
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+          }, 1000);
+        }
+      });
+    }
+    
+    // Відправка повідомлення при натисканні Enter
+    if (chatInput) {
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          chatSendBtn.click();
+        }
+      });
+    }
+  </script>
 </body>
 </html>

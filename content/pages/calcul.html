@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор ОСЦПВ</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #0057b8;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .btn {
+            background: #0057b8;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: #004494;
+        }
+        
+        .result {
+            background: #f0f8ff;
+            border-left: 4px solid #0057b8;
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .result.show {
+            display: block;
+        }
+        
+        .price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #0057b8;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .details {
+            color: #555;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .note {
+            background: #fff8e1;
+            padding: 12px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 13px;
+            color: #666;
+            border-left: 3px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Калькулятор ОСЦПВ</h1>
+        
+        <div class="form-group">
+            <label>Зона території:</label>
+            <select id="zone">
+                <option value="1">Зона 1: Київ, Львів (та зона 6)</option>
+                <option value="2">Зона 2: Дніпро, Одеса, Харків...</option>
+                <option value="3">Зона 3.1 та 3.2: Донецьк, Запоріжжя, Кривий Ріг</option>
+                <option value="4">Зона 4.1 та 4.2: Обласні центри</option>
+                <option value="5">Зона 5.1 та 5.2: Інші населені пункти</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Тип ТЗ:</label>
+            <select id="vehicle">
+                <option value="A1">A1 - Мотоцикл до 300 см³</option>
+                <option value="A2">A2 - Мотоцикл понад 500 см³</option>
+                <option value="B1">B1 - Легковий до 1000 см³</option>
+                <option value="B2">B2 - Легковий 1601-2000 см³</option>
+                <option value="B3">B3 - Легковий 2001-3000 см³</option>
+                <option value="B4">B4 - Легковий понад 3001 см³</option>
+                <option value="B5">B5 - Легковий електронабіль</option>
+                <option value="C1">C1 - Вантажний до 2 тонн</option>
+                <option value="C2">C2 - Вантажний понад 2 тонни</option>
+                <option value="D1">D1 - Автобус до 20 осіб</option>
+                <option value="D2">D2 - Автобус більше 20 осіб</option>
+                <option value="F">F - Причеп до легкового</option>
+                <option value="E">E - Причеп до вантажного</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Тип використання:</label>
+            <select id="usage">
+                <option value="general">Загальне використання</option>
+                <option value="taxi">Таксі</option>
+                <option value="privileged">Пільгове використання</option>
+            </select>
+        </div>
+        
+        <button class="btn" onclick="calculate()">РОЗРАХУВАТИ ВАРТІСТЬ</button>
+        
+        <div id="result" class="result">
+            <div class="price" id="price">0 грн</div>
+            <div class="details" id="details"></div>
+        </div>
+        
+        <div class="note">
+            <strong>Примітка:</strong><br>
+            • Таксі: тільки для типів B1-B5, C1-C2, D1-D2 (×5)<br>
+            • Пільгове: тільки для типів A1-A2, B1-B3 (до 2500 см³), B5 (до 100 кВт) (÷2)<br>
+            • F = причеп до легкового, E = причеп до вантажного
+        </div>
+    </div>
+
+    <script>
+        // БАЗОВІ ТАРИФИ ДЛЯ КОЖНОЇ ЗОНИ (загальне використання)
+        const baseTariffs = {
+            "1": { // Зона 1 та 6
+                "A1": 1930, "A2": 3595, "B1": 5246, "B2": 6189, "B3": 6789,
+                "B4": 9210, "B5": 11188, "C1": 13306, "C2": 13783,
+                "D1": 13406, "D2": 25777, "F": 1902, "E": 3004
+            },
+            "2": { // Зона 2
+                "A1": 1801, "A2": 3204, "B1": 4849, "B2": 6100, "B3": 6537,
+                "B4": 7994, "B5": 11188, "C1": 9798, "C2": 11797,
+                "D1": 13182, "D2": 24329, "F": 1802, "E": 2747
+            },
+            "3": { // Зона 3.1 та 3.2
+                "A1": 1502, "A2": 2348, "B1": 3955, "B2": 4804, "B3": 5445,
+                "B4": 7038, "B5": 9202, "C1": 7812, "C2": 9493,
+                "D1": 9607, "D2": 15814, "F": 1400, "E": 2102
+            },
+            "4": { // Зона 4.1 та 4.2
+                "A1": 1401, "A2": 2148, "B1": 3608, "B2": 4156, "B3": 4449,
+                "B4": 6719, "B5": 8308, "C1": 7050, "C2": 9453,
+                "D1": 9347, "D2": 14365, "F": 1400, "E": 2102
+            },
+            "5": { // Зона 5.1 та 5.2
+                "A1": 968, "A2": 1648, "B1": 2449, "B2": 2949, "B3": 3197,
+                "B4": 4142, "B5": 6190, "C1": 5097, "C2": 6315,
+                "D1": 6293, "D2": 9789, "F": 968, "E": 1200
+            }
+        };
+
+        // Типи ТЗ, які дозволені для таксі
+        const taxiAllowed = ["B1", "B2", "B3", "B4", "B5", "C1", "C2", "D1", "D2"];
+        
+        // Типи ТЗ, які дозволені для пільгового використання
+        const privilegedAllowed = ["A1", "A2", "B1", "B2", "B3", "B5"];
+
+        function calculate() {
+            const zone = document.getElementById('zone').value;
+            const vehicle = document.getElementById('vehicle').value;
+            const usage = document.getElementById('usage').value;
+            
+            // Отримуємо базовий тариф
+            const basePrice = baseTariffs[zone][vehicle];
+            
+            let finalPrice = basePrice;
+            let details = `Базова вартість: ${basePrice} грн`;
+            
+            // Застосовуємо коефіцієнти за типом використання
+            if (usage === "taxi") {
+                if (taxiAllowed.includes(vehicle)) {
+                    finalPrice = basePrice * 5;
+                    details = `Базова вартість: ${basePrice} грн × 5 (таксі)`;
+                } else {
+                    document.getElementById('result').classList.add('show');
+                    document.getElementById('price').textContent = "НЕ ЗАСТОСОВУЄТЬСЯ";
+                    document.getElementById('details').textContent = "Таксі діє лише для типів: B1-B5, C1-C2, D1-D2";
+                    return;
+                }
+            } else if (usage === "privileged") {
+                if (privilegedAllowed.includes(vehicle)) {
+                    finalPrice = Math.round(basePrice / 2);
+                    details = `Базова вартість: ${basePrice} грн ÷ 2 (пільговий)`;
+                } else {
+                    document.getElementById('result').classList.add('show');
+                    document.getElementById('price').textContent = "НЕ ЗАСТОСОВУЄТЬСЯ";
+                    document.getElementById('details').textContent = "Пільговий діє лише для типів: A1, A2, B1-B3 (до 2500 см³), B5 (до 100 кВт)";
+                    return;
+                }
+            }
+            
+            // Відображаємо результат
+            document.getElementById('result').classList.add('show');
+            document.getElementById('price').textContent = finalPrice + ' грн';
+            document.getElementById('details').textContent = details;
+        }
+
+        // Автоматичний розрахунок при зміні параметрів
+        document.getElementById('zone').addEventListener('change', calculate);
+        document.getElementById('vehicle').addEventListener('change', calculate);
+        document.getElementById('usage').addEventListener('change', calculate);
+        
+        // Розрахунок при завантаженні сторінки
+        window.onload = calculate;
+    </script>
+</body>
+</html>

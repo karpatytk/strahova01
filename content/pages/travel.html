@@ -1,32 +1,626 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Туристична страховка | Страхування 360</title>
-  <link rel="stylesheet" href="../../style.css"> <!-- шлях до твоєго CSS -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Туристичне страхування | Travel Insurance | Івано-Франківськ</title>
+  <meta name="description" content="Туристичне страхування для виїзду за кордон. Оформити онлайн за 5 хв. Економ, Стандарт, Преміум. Поліс у смартфоні прямо на кордоні.">
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMFDMGF5NX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MMFDMGF5NX');
+  </script>
+
+  <style>
+    /* Основні стилі */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Гаряча лінія */
+    .hotline { 
+      background: linear-gradient(to right, #28a745, #20c997); 
+      color: white; 
+      text-align: center; 
+      padding: 10px; 
+      font-size: 14px; 
+    }
+    .hotline a { color: white; text-decoration: none; font-weight: bold; }
+    
+    /* Кнопки */
+    .btn-green {
+      background: #ffc107;
+      color: #333;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-green:hover {
+      background: #e0a800;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+    }
+    
+    /* Герой секція */
+    .hero-travel {
+      background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    /* Тарифи */
+    .tariff-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+    
+    .tariff-card {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      border-top: 5px solid;
+      transition: transform 0.3s;
+    }
+    
+    .tariff-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .tariff-card.econom {
+      border-color: #28a745;
+    }
+    
+    .tariff-card.standard {
+      border-color: #007bff;
+    }
+    
+    .tariff-card.premium {
+      border-color: #dc3545;
+    }
+    
+    .tariff-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    
+    .tariff-price {
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+      margin: 20px 0;
+    }
+    
+    .price-range {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    /* Форма */
+    .travel-form-section {
+      background: #f8f9fa;
+      padding: 50px 0;
+    }
+    
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #28a745;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    /* Чат-віджет */
+    #chat-widget {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 350px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+      padding: 20px;
+      z-index: 1000;
+      border: 1px solid #ddd;
+    }
+    #chat-widget.hidden { display: none; }
+    #chat-open-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 15px 25px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 999;
+      font-size: 16px;
+      box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    /* Адаптивність */
+    @media (max-width: 768px) {
+      .tariff-cards {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 30px auto;
+      }
+      .form-container {
+        padding: 25px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      #chat-widget { 
+        width: calc(100vw - 40px); 
+        right: 20px; 
+        left: 20px; 
+        bottom: 90px; 
+      }
+    }
+  </style>
 </head>
 <body>
-
-<header class="header">
-  <div class="container header-inner">
-    <div class="logo">Страхування 360</div>
-  </div>
-</header>
-
-<main class="container" style="text-align: center; padding: 40px 20px;">
-  <h1>Туристична страховка</h1>
-  <p style="font-size:18px; margin:20px 0;">Сайт у процесі наповнення</p>
-
-  <div style="margin: 20px 0;">
-    <p style="font-size:16px;">Телефон: <a href="tel:+380500500370">+38 050 050 0370</a></p>
+  <!-- Гаряча лінія -->
+  <div class="hotline">
+    <strong>✈️ Консультація з туристичного страхування:</strong>
+    <a href="tel:+380500500370">+38 050 050 0370</a>
   </div>
 
-  <div style="margin-top: 30px;">
-    <a href="../../index.html" class="btn">Повернутися на головну</a>
-  </div>
-</main>
+  <!-- Навігація -->
+  <header style="padding: 20px 0; border-bottom: 1px solid #eee;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <div style="font-size: 24px; font-weight: bold; color: #28a745;">
+        <a href="/" style="color: inherit; text-decoration: none;">Страхування 360</a>
+      </div>
+      <nav>
+        <a href="/" style="margin: 0 10px; text-decoration: none; color: #333;">Головна</a>
+        <a href="/zelenakarta" style="margin: 0 10px; text-decoration: none; color: #333;">Зелена карта</a>
+        <a href="/avtotsivilka" style="margin: 0 10px; text-decoration: none; color: #333;">Автоцивілка</a>
+        <a href="/travel" style="margin: 0 10px; text-decoration: none; color: #28a745; font-weight: bold;">Туристичне</a>
+      </nav>
+    </div>
+  </header>
 
-<script src="../../menu.js"></script>
+  <main>
+    <!-- Герой -->
+    <section class="hero-travel">
+      <div class="container">
+        <h1 style="font-size: 2.5rem; margin-bottom: 20px;">Туристичне страхування для виїзду за кордон</h1>
+        <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px;">
+          ⚡ За 5 хвилин онлайн. Навіть коли ви чекаєте у черзі на кордоні. <br>
+          Ви зможете отримати свій поліс у смартфоні.
+        </p>
+        
+        <div style="background: white; color: #28a745; display: inline-block; padding: 10px 40px; border-radius: 50px; font-size: 1.8rem; font-weight: bold; margin: 20px 0;">
+          Від 3 грн за день
+        </div>
+      </div>
+    </section>
+
+    <!-- Тарифи -->
+    <section class="container" style="padding: 60px 0;">
+      <h2 style="text-align:center;color:#333;margin-bottom:2rem;">Виберіть варіант страхування</h2>
+      
+      <div class="tariff-cards">
+        <div class="tariff-card econom">
+          <div class="tariff-name">Економ</div>
+          <div class="price-range">3 - 15 грн за день</div>
+          <div class="tariff-price">Від 3 грн/день</div>
+          <div style="color: #666; margin-bottom: 25px;">
+            Базовий захист для коротких поїздок
+          </div>
+          <button class="btn-green" onclick="scrollToForm()">
+            <span>📋</span> ОБРАТИ ЦЕЙ ТАРИФ
+          </button>
+        </div>
+        
+        <div class="tariff-card standard">
+          <div class="tariff-name">Стандарт</div>
+          <div class="price-range">30 - 50 грн за день</div>
+          <div class="tariff-price">Від 30 грн/день</div>
+          <div style="color: #666; margin-bottom: 25px;">
+            Оптимальний захист для більшості подорожей
+          </div>
+          <button class="btn-green" onclick="scrollToForm()">
+            <span>📋</span> ОБРАТИ ЦЕЙ ТАРИФ
+          </button>
+        </div>
+        
+        <div class="tariff-card premium">
+          <div class="tariff-name">Преміум</div>
+          <div class="price-range">50 - 100 грн за день</div>
+          <div class="tariff-price">Від 50 грн/день</div>
+          <div style="color: #666; margin-bottom: 25px;">
+            Максимальний захист для комфортної подорожі
+          </div>
+          <button class="btn-green" onclick="scrollToForm()">
+            <span>📋</span> ОБРАТИ ЦЕЙ ТАРИФ
+          </button>
+        </div>
+      </div>
+      
+      <div style="text-align:center; margin-top: 30px; padding: 20px; background: #e9f7ef; border-radius: 10px;">
+        <p style="margin: 0; color: #28a745;">
+          <strong>Важливо:</strong> Вартість залежить від терміну перебування та країни призначення.<br>
+          У різних країнах можуть бути різні вимоги до страховок.
+        </p>
+      </div>
+    </section>
+
+    <!-- Форма заявки -->
+    <section class="travel-form-section">
+      <div class="container">
+        <div class="form-container">
+          <h2 style="text-align:center;color:#28a745;margin-bottom:2rem;">
+            Заявка на туристичне страхування
+          </h2>
+          
+          <p style="text-align:center;color:#666;margin-bottom:30px;">
+            Заповніть форму і наш спеціаліст підбере для вас найкращий варіант з урахуванням усіх нюансів.
+          </p>
+          
+          <form id="travel-form" action="https://formspree.io/f/xpwvewvz" method="POST">
+            <!-- Приховані поля -->
+            <input type="hidden" name="_subject" value="Заявка на туристичне страхування з сайту strahova.biz.ua">
+            <input type="hidden" name="_language" value="uk">
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label>Ваше ПІБ *</label>
+                <input type="text" name="name" required placeholder="Іванов Іван Іванович">
+              </div>
+              
+              <div class="form-group">
+                <label>Номер телефону *</label>
+                <input type="tel" name="phone" required placeholder="+38 (0__) ___ __ __">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email *</label>
+                <input type="email" name="email" required placeholder="ваша@пошта.укр">
+              </div>
+              
+              <div class="form-group">
+                <label>Дата народження *</label>
+                <input type="date" name="birthdate" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label>Вид страхування *</label>
+                <select name="tariff" required>
+                  <option value="">Оберіть тариф...</option>
+                  <option value="econom">Економ (3-15 грн/день)</option>
+                  <option value="standard">Стандарт (30-50 грн/день)</option>
+                  <option value="premium">Преміум (50-100 грн/день)</option>
+                  <option value="consultation">Потрібна консультація</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label>Країна призначення *</label>
+                <input type="text" name="country" required placeholder="Наприклад: Польща, Німеччина, Італія...">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label>Термін перебування (днів) *</label>
+                <input type="number" name="days" min="1" max="365" required placeholder="Наприклад: 14">
+              </div>
+              
+              <div class="form-group">
+                <label>Дата початку подорожі</label>
+                <input type="date" name="start_date">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Кількість осіб *</label>
+              <input type="number" name="persons" min="1" max="10" required placeholder="Скільки людей потрібно застрахувати?">
+            </div>
+            
+            <div class="form-group">
+              <label>Додаткова інформація</label>
+              <textarea name="message" rows="4" placeholder="Особливі вимоги, хронічні захворювання, активний відпочинок (гірські лижі, дайвінг тощо)..."></textarea>
+            </div>
+            
+            <div class="form-group" style="margin: 30px 0;">
+              <label style="display:flex;align-items:flex-start;gap:10px;">
+                <input type="checkbox" name="agreement" required style="margin-top:5px;">
+                <span>Я погоджуюсь з обробкою персональних даних та умовами страхування *</span>
+              </label>
+            </div>
+            
+            <button type="submit" class="btn-green" style="width:100%;font-size:18px;padding:15px;">
+              <span>✈️</span> НАДІСЛАТИ ЗАЯВКУ ДЛЯ КОНСУЛЬТАЦІЇ
+            </button>
+          </form>
+          
+          <!-- Повідомлення про успіх -->
+          <div id="form-success" style="display:none; text-align:center; padding:3rem;">
+            <div style="font-size:4rem; color:#28a745; margin-bottom:1rem;">✅</div>
+            <h3 style="color:#28a745;margin-bottom:1rem;">Заявку прийнято!</h3>
+            <p style="margin-bottom:1rem;color:#555;font-size:1.1rem;">
+              Наш спеціаліст з туристичного страхування зв'яжеться з вами протягом <strong>15 хвилин</strong>.
+            </p>
+            <p style="margin-bottom:1.5rem;color:#555;">
+              У туристичному страхуванні багато нюансів - ми підберемо індивідуальне рішення саме для вашої подорожі.
+            </p>
+            <button id="chat-open-from-form" class="btn-green">
+              <span>💬</span> ПЕРЕЙТИ В ЧАТ ДО ЄВИ
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="container" style="max-width: 900px; margin: 4rem auto;">
+      <h2 style="text-align:center;color:#28a745;margin-bottom:2rem;">Відповіді на часті запитання</h2>
+      
+      <div style="background:#f8f9fa;padding:2rem;border-radius:15px;">
+        <div style="margin-bottom:1.5rem;">
+          <h3 style="color:#28a745;margin-bottom:0.5rem;font-size:1.2rem;">
+            ⏱️ Скільки часу займає оформлення?
+          </h3>
+          <p style="margin:0;line-height:1.5;color:#555;">
+            Всього 5-10 хвилин. Поліс надсилається на email або прямо у чат. Можете оформити навіть стоячи в черзі на кордоні.
+          </p>
+        </div>
+        
+        <div style="margin-bottom:1.5rem;">
+          <h3 style="color:#28a745;margin-bottom:0.5rem;font-size:1.2rem;">
+            🏥 Що покриває страховка?
+          </h3>
+          <p style="margin:0;line-height:1.5;color:#555;">
+            Лікування нещасних випадків, екстрена медична допомога, медична евакуація, репатріація, стоматологічна допомога.
+            Кожен тариф має різні ліміти покриття.
+          </p>
+        </div>
+        
+        <div style="margin-bottom:1.5rem;">
+          <h3 style="color:#28a745;margin-bottom:0.5rem;font-size:1.2rem;">
+            🌍 Для яких країн підходить?
+          </h3>
+          <p style="margin:0;line-height:1.5;color:#555;">
+            Для всіх країн світу. Але для країн Шенгену, США, Канади, Австралії можуть бути додаткові вимоги - 
+            наш спеціаліст допоможе підібрати правильний варіант.
+          </p>
+        </div>
+        
+        <div>
+          <h3 style="color:#28a745;margin-bottom:0.5rem;font-size:1.2rem;">
+            ⚠️ Чому потрібна індивідуальна консультація?
+          </h3>
+          <p style="margin:0;line-height:1.5;color:#555;">
+            Туристичне страхування має багато нюансів: вік туриста, країна призначення, тривалість поїздки, 
+            плани на активний відпочинок, наявність хронічних захворювань. Все це впливає на умови та вартість.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background: #f8f9fa; padding: 40px 0; margin-top: 60px;">
+    <div class="container">
+      <div style="text-align:center;">
+        <p><strong>Страхування 360 — страхова компанія Івано-Франківськ</strong></p>
+        <p>вул. Незалежності 67, каб. 212, Івано-Франківськ</p>
+        <p><a href="tel:+380500500370" style="color:#28a745; text-decoration:none;">+38 050 050 0370</a></p>
+        <p>Пн–Пт 9:00–18:00 • Онлайн консультації 24/7</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Чат-віджет Єва -->
+  <div id="chat-widget" class="hidden">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+      <strong style="font-size: 18px;">Єва — консультант з туристичного страхування</strong>
+      <button id="chat-close-btn" style="background:none; border:none; font-size:20px; cursor:pointer;">✖</button>
+    </div>
+    <div id="chat-messages" style="height:300px; overflow-y:auto; margin-bottom:15px; padding:10px; background:#f9f9f9; border-radius:8px;">
+      <div style="background:#f1f1f1; padding:10px; border-radius:8px; margin-bottom:10px; max-width:80%;">
+        <strong>Єва:</strong> Вітаю! Я Єва, консультант з туристичного страхування. До якої країни плануєте подорож?
+      </div>
+    </div>
+    <input id="chat-input" type="text" placeholder="Напишіть ваше повідомлення..." style="width:100%; padding:12px; border:1px solid #ddd; border-radius:6px; font-size:16px;">
+    <button id="chat-send-btn" style="width:100%; padding:12px; background:#28a745; color:white; border:none; border-radius:6px; font-size:16px; margin-top:10px; cursor:pointer;">Надіслати</button>
+  </div>
+
+  <button id="chat-open-btn">
+    <span>💬</span> Консультація з Євою
+  </button>
+
+  <script>
+    // Функція прокрутки до форми
+    function scrollToForm() {
+      document.querySelector('.travel-form-section').scrollIntoView({ 
+        behavior: 'smooth' 
+      });
+    }
+
+    // Обробка форми
+    document.getElementById('travel-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Ховаємо форму, показуємо повідомлення про успіх
+      this.style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+      
+      // Відправка в Google Analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_submit', {
+          'event_category': 'lead_generation',
+          'event_label': 'travel_insurance_form'
+        });
+      }
+      
+      // Відправка форми (Formspree)
+      const formData = new FormData(this);
+      fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Форма успішно відправлена');
+        }
+      })
+      .catch(error => {
+        console.error('Помилка відправки форми:', error);
+      });
+    });
+
+    // Відкриття чату з форми
+    document.getElementById('chat-open-from-form')?.addEventListener('click', () => {
+      document.getElementById('chat-open-btn').click();
+    });
+
+    // Управління чатом
+    const chatWidget = document.getElementById('chat-widget');
+    const chatOpenBtn = document.getElementById('chat-open-btn');
+    const chatCloseBtn = document.getElementById('chat-close-btn');
+    
+    if (chatOpenBtn) {
+      chatOpenBtn.addEventListener('click', () => {
+        chatWidget.classList.remove('hidden');
+      });
+    }
+    
+    if (chatCloseBtn) {
+      chatCloseBtn.addEventListener('click', () => {
+        chatWidget.classList.add('hidden');
+      });
+    }
+    
+    // Відправка повідомлень у чат
+    const chatSendBtn = document.getElementById('chat-send-btn');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+    
+    if (chatSendBtn) {
+      chatSendBtn.addEventListener('click', sendChatMessage);
+    }
+    
+    if (chatInput) {
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          sendChatMessage();
+        }
+      });
+    }
+    
+    function sendChatMessage() {
+      const message = chatInput.value.trim();
+      if (message) {
+        // Додаємо повідомлення користувача
+        const userMsg = document.createElement('div');
+        userMsg.innerHTML = `<strong>Ви:</strong> ${message}`;
+        userMsg.style.background = '#e3f2fd';
+        userMsg.style.padding = '10px';
+        userMsg.style.borderRadius = '8px';
+        userMsg.style.marginBottom = '10px';
+        userMsg.style.marginLeft = '20%';
+        userMsg.style.maxWidth = '80%';
+        chatMessages.appendChild(userMsg);
+        
+        // Очищаємо поле вводу
+        chatInput.value = '';
+        
+        // Прокручуємо до низу
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // Симулюємо відповідь Єви через 1 секунду
+        setTimeout(() => {
+          const travelResponses = [
+            "Дякую! Для підбору туристичної страховки мені потрібна додаткова інформація. До якої країни їдете?",
+            "Зрозуміло! На який термін плануєте подорож?",
+            "Чудово! Оберіть бажаний тариф: Економ, Стандарт чи Преміум?",
+            "Дякую за інформацію! Для точного розрахунку краще заповнити форму на сторінці або зателефонувати."
+          ];
+          
+          const randomResponse = travelResponses[Math.floor(Math.random() * travelResponses.length)];
+          
+          const evaMsg = document.createElement('div');
+          evaMsg.innerHTML = `<strong>Єва:</strong> ${randomResponse}`;
+          evaMsg.style.background = '#f1f1f1';
+          evaMsg.style.padding = '10px';
+          evaMsg.style.borderRadius = '8px';
+          evaMsg.style.marginBottom = '10px';
+          evaMsg.style.maxWidth = '80%';
+          chatMessages.appendChild(evaMsg);
+          
+          // Прокручуємо до низу
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
+      }
+    }
+  </script>
 </body>
 </html>
