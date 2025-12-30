@@ -1,32 +1,182 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Новини | Страхування 360</title>
-  <link rel="stylesheet" href="../../style.css"> <!-- шлях до твоєго CSS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новини про страхування | Страхування 360</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LMWWDS26BQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LMWWDS26BQ');
+    </script>
+
+    <style>
+        /* Ваші стилі з сайту */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Гаряча лінія */
+        .hotline { 
+            background: linear-gradient(to right, #0057b8, #007bff); 
+            color: white; 
+            text-align: center; 
+            padding: 10px; 
+            font-size: 14px; 
+        }
+        .hotline a { color: white; text-decoration: none; font-weight: bold; }
+        
+        /* Навігація */
+        header { padding: 20px 0; border-bottom: 1px solid #eee; }
+        .logo { font-size: 24px; font-weight: bold; color: #0057b8; }
+        nav a { margin: 0 10px; text-decoration: none; color: #333; }
+        nav a.active { color: #0057b8; font-weight: bold; }
+        
+        /* Контейнер для новин */
+        .news-container {
+            padding: 40px 0;
+            min-height: 500px;
+        }
+        
+        .blogger-frame {
+            width: 100%;
+            height: 800px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .admin-link {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .btn {
+            background: #ffc107;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
+    <!-- Гаряча лінія -->
+    <div class="hotline">
+        <strong>📞 Консультація:</strong>
+        <a href="tel:+380500500370">+38 050 050 0370</a>
+    </div>
 
-<header class="header">
-  <div class="container header-inner">
-    <div class="logo">Страхування 360</div>
-  </div>
-</header>
+    <!-- Навігація -->
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo">
+                <a href="/" style="color: inherit; text-decoration: none;">Страхування 360</a>
+            </div>
+            <nav>
+                <a href="/">Головна</a>
+                <a href="/zelenakarta">Зелена карта</a>
+                <a href="/avtotsivilka">Автоцивілка</a>
+                <a href="/travel">Туристичне</a>
+                <a href="/news" class="active">Новини</a>
+            </nav>
+        </div>
+    </header>
 
-<main class="container" style="text-align: center; padding: 40px 20px;">
-  <h1>Новини</h1>
-  <p style="font-size:18px; margin:20px 0;">Сайт у процесі наповнення</p>
+    <main>
+        <!-- Герой -->
+        <section style="background: linear-gradient(135deg, #0057b8 0%, #007bff 100%); color: white; padding: 40px 0; text-align: center;">
+            <div class="container">
+                <h1 style="font-size: 2rem; margin-bottom: 15px;">Актуальні новини про страхування</h1>
+                <p>Зміни в законодавстві, нові тарифи, корисні поради</p>
+            </div>
+        </section>
 
-  <div style="margin: 20px 0;">
-    <p style="font-size:16px;">Телефон: <a href="tel:+380500500370">+38 050 050 0370</a></p>
-  </div>
+        <!-- Блоггер новини -->
+        <section class="news-container">
+            <div class="container">
+                <!-- Варіант 1: Iframe (найпростіше) -->
+                <iframe src="https://strahova-news.blogspot.com" 
+                        class="blogger-frame"
+                        title="Новини про страхування">
+                </iframe>
+                
+                <!-- Варіант 2: Посилання (якщо iframe не працює) -->
+                <div class="admin-link">
+                    <p>Переглянути всі новини на окремій сторінці:</p>
+                    <a href="https://strahova-news.blogspot.com" 
+                       target="_blank" 
+                       class="btn">
+                        📰 Відкрити всі новини
+                    </a>
+                    <a href="https://www.blogger.com/blog/posts/ВАШ_ID_БЛОГУ" 
+                       target="_blank"
+                       class="btn" style="background: #4285f4; color: white;">
+                        ✏️ Додати новину
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <div style="margin-top: 30px;">
-    <a href="../../index.html" class="btn">Повернутися на головну</a>
-  </div>
-</main>
+    <footer style="background: #f8f9fa; padding: 40px 0; margin-top: 40px;">
+        <div class="container">
+            <div style="text-align:center;">
+                <p><strong>Страхування 360 — страхова компанія Івано-Франківськ</strong></p>
+                <p>вул. Незалежності 67, каб. 212, Івано-Франківськ</p>
+                <p><a href="tel:+380500500370" style="color:#0057b8; text-decoration:none;">+38 050 050 0370</a></p>
+                <p>Пн–Пт 9:00–18:00 • Онлайн консультації 24/7</p>
+            </div>
+        </div>
+    </footer>
 
-<script src="../../menu.js"></script>
+    <script>
+        // Альтернатива: завантаження через RSS
+        // Якщо iframe не працює добре
+        
+        async function loadBloggerRSS() {
+            try {
+                // URL RSS вашого блогу
+                const rssURL = 'https://strahova-news.blogspot.com/feeds/posts/default?alt=json';
+                
+                const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssURL)}`);
+                const data = await response.json();
+                
+                const container = document.querySelector('.news-container .container');
+                container.innerHTML = '<h2>Останні новини</h2>';
+                
+                // Відображаємо останні 5 новин
+                data.items.slice(0, 5).forEach(item => {
+                    const newsDiv = document.createElement('div');
+                    newsDiv.className = 'news-item';
+                    newsDiv.innerHTML = `
+                        <div style="background:white;padding:20px;margin:15px 0;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,0.1);">
+                            <h3 style="color:#0057b8;">${item.title}</h3>
+                            <p style="color:#666;font-size:14px;">${new Date(item.pubDate).toLocaleDateString('uk-UA')}</p>
+                            <div>${item.description.substring(0, 200)}...</div>
+                            <a href="${item.link}" target="_blank" style="color:#0057b8;font-weight:bold;">Читати далі →</a>
+                        </div>
+                    `;
+                    container.appendChild(newsDiv);
+                });
+                
+            } catch (error) {
+                console.log('Використовуємо iframe версію');
+            }
+        }
+        
+        // Запускаємо як альтернативу
+        // loadBloggerRSS();
+    </script>
 </body>
 </html>
