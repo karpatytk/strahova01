@@ -26,37 +26,151 @@
   <link rel="canonical" href="https://strahova.biz.ua">
   <link rel="stylesheet" href="style.css">
   
-  <!-- Schema.org markup for Google -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "InsuranceAgency",
-    "name": "Страхування 360",
-    "image": "https://strahova.biz.ua/images/logo.png",
-    "description": "Страхова компанія у Івано-Франківську: автострахування, туристичне, медичне, страхування майна",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "вул. Незалежності 67, каб. 212",
-      "addressLocality": "Івано-Франківськ",
-      "addressRegion": "Івано-Франківська область",
-      "postalCode": "76000",
-      "addressCountry": "UA"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "48.9226",
-      "longitude": "24.7111"
-    },
-    "telephone": "+380500500370",
-    "openingHours": "Mo-Fr 09:00-18:00",
-    "priceRange": "₴",
-    "url": "https://strahova.biz.ua",
-    "sameAs": [
-      "https://www.facebook.com/ваша-сторінка",
-      "https://t.me/ваш-канал"
+ <!-- Покращена Schema.org розмітка для Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "InsuranceAgency",
+  "name": "Страхування 360",
+  "alternateName": "Strahova 360",
+  "image": "https://strahova.biz.ua/images/logo.png",
+  "logo": "https://strahova.biz.ua/images/logo.png",
+  "description": "Страхова компанія у Івано-Франківську: автострахування (ОСЦПВ, КАСКО, Зелена карта), туристичне, медичне страхування, страхування майна та іноземців. Онлайн оформлення 24/7.",
+  "slogan": "Ваша надійність — наша робота",
+  
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "вул. Незалежності 67, каб. 212",
+    "addressLocality": "Івано-Франківськ",
+    "addressRegion": "Івано-Франківська область",
+    "postalCode": "76000",
+    "addressCountry": "UA"
+  },
+  
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 48.9226,
+    "longitude": 24.7111
+  },
+  
+  "telephone": "+380500500370",
+  "email": "strahova.biz.ua@gmail.com",
+  
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  
+  "priceRange": "₴₴",
+  "url": "https://strahova.biz.ua",
+  
+  "areaServed": {
+    "@type": "City",
+    "name": "Івано-Франківськ",
+    "containedIn": {
+      "@type": "AdministrativeArea",
+      "name": "Івано-Франківська область"
+    }
+  },
+  
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Послуги страхування",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Автострахування (ОСЦПВ)",
+          "description": "Обов'язкове страхування цивільно-правової відповідальності власників наземних транспортних засобів"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "КАСКО",
+          "description": "Добровільне страхування автомобіля від пошкоджень, крадіжки та інших ризиків"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Зелена карта",
+          "description": "Міжнародне автострахування для виїзду за кордон"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Туристичне страхування",
+          "description": "Медична страховка для подорожей за кордон. Покриття від 30 000 до 60 000 євро"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Медичне страхування",
+          "description": "Особисте добровільне медичне страхування для дітей та дорослих"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Страхування майна",
+          "description": "Страхування квартир, будинків, офісів від пожежі, затоплення, крадіжки"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Страхування іноземців",
+          "description": "Обов'язковий поліс для іноземців для перебування в Україні"
+        }
+      }
     ]
+  },
+  
+  "sameAs": [
+    "https://www.facebook.com/strahova360",
+    "https://t.me/strahova360"
+  ],
+  
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  
+  "founder": {
+    "@type": "Organization",
+    "name": "СГ ТАС"
+  },
+  
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "СГ ТАС",
+    "description": "Центр продажу №5"
   }
-  </script>
+}
+</script>
   
   <!-- ДОДАТКОВІ СТИЛІ ДЛЯ МЕНЮ (якщо потрібно) -->
   <style>
@@ -107,16 +221,22 @@
   <strong>📞 Гаряча лінія:</strong> <a href="tel:+380500500370" style="color:white;text-decoration:none;">+38 050 050 0370</a>
 </div>
 
+<!-- ВИПРАВЛЕНА ШАПКА САЙТУ -->
 <header class="header" role="banner">
   <div class="container header-inner">
     <div class="logo" itemprop="name">
       <a href="./" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
-        <img src="logo.png" alt="Страхування 360" 
-             style="height: 45px; width: auto; margin-right: 12px;">
+        <!-- Логотип з правильним шляхом -->
+        <img src="images/logo.png" 
+             alt="Логотип Страхування 360" 
+             style="height: 45px; width: auto; margin-right: 12px;"
+             onerror="this.style.display='none'; console.error('Помилка завантаження логотипу')">
+        
         <div>
-          <span itemprop="brand" style="font-size: 24px; font-weight: bold; color: #0057b8;">
+          <span style="font-size: 24px; font-weight: bold; color: #0057b8;">
             Страхування 360
           </span>
+          <meta itemprop="brand" content="Страхування 360">
           <meta itemprop="slogan" content="Ваша надійність — наша робота">
           <div style="font-size: 12px; color: #666; margin-top: 2px;">
             Івано-Франківськ
@@ -151,6 +271,38 @@
     </div>
   </div>
 </header>
+
+<style>
+/* Додаткові стилі для логотипу */
+.logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease;
+}
+
+.logo a:hover {
+  opacity: 0.85;
+}
+
+/* Адаптивність логотипу */
+@media (max-width: 768px) {
+  .logo svg {
+    height: 35px;
+    width: 35px;
+    margin-right: 8px;
+  }
+  
+  .logo span {
+    font-size: 18px !important;
+  }
+  
+  .logo div div {
+    font-size: 11px !important;
+  }
+}
+</style>
 
 <main role="main">
   <section class="hero container" aria-labelledby="hero-title">
